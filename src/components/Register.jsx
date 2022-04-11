@@ -13,7 +13,7 @@ const Register = ({
 }) => {
   return (
     <div className="register-page">
-      <h2>Welcome to Stranger's Things</h2>
+      <h2>Welcome to Fitness Tracker!</h2>
 
       <div className="form-container">
         {/* The form below is the form that creates a new username and password */}

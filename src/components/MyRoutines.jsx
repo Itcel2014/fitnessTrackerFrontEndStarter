@@ -1,33 +1,30 @@
 import React, { useState, useEffect } from "react";
 import deleteTrash from "./images/deleteTrash.png";
 import editPencil from "./images/editPencil.png";
-import { fetchUserData, deletePost } from "../api/ajaxHelpers";
-import Messages from "./Messages";
-import EditPostCard from "./EditRoutine";
+import { fetchUserData, deleteRoutine } from "../api/ajaxHelpers";
+import EditRoutine from "./EditRoutine";
 
-
-const Profile = ({
-  userPosts,
-  setUserPosts,
+const MyRoutines = ({
+  userRoutines,
+  setUserRoutines,
   isLoggedIn,
   token,
   username,
   setUsername,
-  userMessages,
-  setUserMessages,
-
+  userActivities,
+  setUserActivites,
 }) => {
-  const [profilePostDeleted, setProfilePostDeleted] = useState(false);
+  const [routinesDeleted, setRoutinesDeleted] = useState(false);
   const [clickedEdit, setClickedEdit] = useState(false);
 
-  // The below useEffect is responsible for retrieving and filtering the user's posts and messages
+  // The below useEffect is responsible for retrieving and filtering the user's routine and activities
   useEffect(() => {
     const getUserData = async () => {
       try {
         if (isLoggedIn) {
           const response = await fetchUserData(token);
-          setUserPosts(response.data.posts);
-          setUserMessages(response.data.messages);
+          setUserRoutines(response.data.routines);
+          setUserActivites(response.data.activities);
           setUsername(response.data.username);
         }
       } catch (err) {
@@ -38,65 +35,68 @@ const Profile = ({
   }, []);
 
   // The Profile page will only display if the user is logged in
-  // The below sections display both the user's posts and the user's messages
+  // The below sections display both the user's routines and the user's activities
   return (
     <>
       {!isLoggedIn ? (
-        <div className="post-page">
-          Please log in/register to create posts or send messages.
+        <div className="routines-page">
+          Please log in/register to create routines or activities.
         </div>
       ) : (
-        <div className="profile-page">
-          {/* This section is used to display the User's Posts */}
-          <div className="post-page">
-            {userPosts.length === 0 ? (
-              <h2>No Posts Yet</h2>
+        <div className="myroutines-page">
+          {/* This section is used to display the User's routines */}
+          <div className="routine-page">
+            {userRoutines.length === 0 ? (
+              <h2>No Routines Yet</h2>
             ) : (
-              userPosts.map((post) => {
+              userRoutines.map((routine) => {
                 return (
-                  <div className="post-card" key={post._id}>
-                    {!post.active ? (
+                  <div className="routine-card" key={routine._id}>
+                    {!routine.active ? (
                       <>
                         <h3
-                          className="post-title"
+                          className="routine-name"
                           style={{
                             textDecorationLine: "line-through",
                             textDecorationStyle: "solid",
                           }}
                         >
-                          {post.title}
+                          {routine.name}
                         </h3>
-                        <p style={{ color: "red" }}>Post Deleted</p>
+                        <p style={{ color: "red" }}>Routine Deleted</p>
                       </>
                     ) : (
-                      <h3 className="post-title">{post.title}</h3>
+                      <h3 className="routine-name">{routine.name}</h3>
                     )}
-                    <h5 className="post-location">Location: {post.location}</h5>
-                    <h6 className="post-deliver">
-                      Will deliver? {post.willDeliver ? "Yes" : "No"}
-                    </h6>
+                    <h5 className="routine-creatorName">
+                      Creator Name: {routine.creatorName}
+                    </h5>
+
                     <br />
-                    <h5 className="post-price">Price: {post.price}</h5>
+                    <h5 className="routine-activities">
+                      Activities: {routine.activities}
+                    </h5>
                     <br />
-                    <p className="post-content">{post.description}</p>
+                    <p className="routine-goal">{routine.goal}</p>
                     <br />
-                    <span className="post-time">
-                      <p className="post-created">
-                        Created On: {new Date(post.createdAt).toLocaleString()}
+                    <span className="routine-time">
+                      <p className="routine-created">
+                        Created On:{" "}
+                        {new Date(routine.createdAt).toLocaleString()}
                       </p>
-                      {post.updatedAt !== post.createdAt ? (
-                        <p className="post-updated">
+                      {routine.updatedAt !== routine.createdAt ? (
+                        <p className="routine-updated">
                           Last Updated On:{" "}
-                          {new Date(post.updatedAt).toLocaleString()}
+                          {new Date(routine.updatedAt).toLocaleString()}
                         </p>
                       ) : null}
                     </span>
                     <br />
                     <div className="button-container">
-                      {!post.active ? null : (
+                      {!routine.active ? null : (
                         <>
                           <button
-                            className="post-button"
+                            className="routine-button"
                             id="edit"
                             onClick={(e) => {
                               e.preventDefault();
@@ -106,12 +106,12 @@ const Profile = ({
                             {<img src={editPencil} alt="pencil icon" />}Edit
                           </button>
                           <button
-                            className="post-button"
+                            className="routine-button"
                             id="delete"
                             onClick={(e) => {
                               e.preventDefault();
-                              setProfilePostDeleted(true);
-                              deletePost(post._id, token);
+                              setProfileRoutineDeleted(true);
+                              deleteRoutine(routine._id, token);
                             }}
                           >
                             {<img src={deleteTrash} alt="trash icon" />}Delete
@@ -119,20 +119,20 @@ const Profile = ({
                         </>
                       )}
                     </div>
-                    {/* the below section opens the EditPost form */}
-                    <div className="editpost-form">
+                    {/* the below section opens the EditRoutine form */}
+                    <div className="editRoutine-form">
                       {clickedEdit ? (
-                        <EditPostCard
+                        <EditRoutine
                           setClickedEdit={setClickedEdit}
-                          posts={userPosts}
-                          setPosts={setUserPosts}
+                          routines={userRoutines}
+                          setRoutines={setUserRoutines}
                           token={token}
-                          post={post}
+                          routine={routine}
                         />
                       ) : null}
                     </div>
-                    <div className="post-deleted">
-                      {profilePostDeleted ? "Post Deleted" : null}
+                    <div className="routine-deleted">
+                      {routinesDeleted ? "Routine Deleted" : null}
                     </div>
                   </div>
                 );
@@ -140,9 +140,9 @@ const Profile = ({
             )}
           </div>
 
-          {/* This section is used to display Messages sent to the user */}
+          {/* This section is used to display activities created by the user */}
           <div className="message-page">
-            {userMessages.length === 0 ? (
+            {userMess.length === 0 ? (
               <h2>No Messages Yet</h2>
             ) : (
               userMessages.map((message, i) => {

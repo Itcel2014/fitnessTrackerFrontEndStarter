@@ -37,10 +37,10 @@ const Navbar = ({
     <nav className="navbar">
       <ul>
         <li>
-          <Link to="/posts">Posts</Link>
+          <Link to="/routines">Routines</Link>
         </li>
         <li>
-          <Link to="/profile">User Profile</Link>
+          <Link to="/MyRoutines">My Routines</Link>
         </li>
 
         {!isLoggedIn ? logInRegisterButtons : null}

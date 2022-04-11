@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import alienIcon from "./images/alienIcon.png";
-import { Posts, Navbar, NewPost, Profile, Login, Register } from "./components";
+import {
+  Routines,
+  Navbar,
+  NewRoutine,
+  MyRoutines,
+  Login,
+  Register,
+} from "./components";
 // need to change Posts, NewPost, Profile, add Activity
 
 function App() {
@@ -9,12 +16,10 @@ function App() {
   const [password, setPassword] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [routines, setRoutines] = useState([]);
-  // need to change posts to routines
+
   const [token, setToken] = useState("");
-  const [userPosts, setUserPosts] = useState([]);
+  const [userRoutines, setUserRoutines] = useState([]);
   // userRoutines
-  const [userMessages, setUserMessages] = useState([]);
-  // userMessages should not be used
 
   useEffect(() => {
     const localStorageToken = localStorage.getItem("token");
@@ -34,7 +39,7 @@ function App() {
             {username}
           </div>
         ) : null}
-      </header> 
+      </header>
       {/* The below section links to the Navbar component */}
       <Navbar
         setIsLoggedIn={setIsLoggedIn}
@@ -49,7 +54,7 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Routines
-            // from Posts
+              // from Posts
               routines={routines}
               setRoutines={setRoutines}
               isLoggedIn={isLoggedIn}
@@ -57,7 +62,7 @@ function App() {
               username={username}
             />
             <NewRoutine
-            // NewPosts needs to change to new routines
+              // NewPosts needs to change to new routines
               routines={routines}
               setRoutines={setRoutines}
               isLoggedIn={isLoggedIn}
@@ -68,7 +73,7 @@ function App() {
 
           <Route path="/routines">
             <Routines
-            // from Posts
+              // from Posts
               routines={routines}
               setRoutines={setRoutines}
               isLoggedIn={isLoggedIn}
@@ -86,29 +91,25 @@ function App() {
 
           <Route path="/activities">
             <Activities
-            // new
-              userPosts={userPosts}
-              setUserPosts={setUserPosts}
+              // new
+              userRoutines={userRoutines}
+              setUserRoutines={setUserRoutines}
               isLoggedIn={isLoggedIn}
               token={token}
               username={username}
               setUsername={setUsername}
-              userMessages={userMessages}
-              setUserMessages={setUserMessages}
               setToken={setToken}
             />
           </Route>
           <Route path="/myRoutines">
             <MyRoutines
-            // from profile
-              userPosts={userPosts}
-              setUserPosts={setUserPosts}
+              // from profile
+              userRoutines={userRoutines}
+              setUserRoutines={setUserRoutines}
               isLoggedIn={isLoggedIn}
               token={token}
               username={username}
               setUsername={setUsername}
-              userMessages={userMessages}
-              setUserMessages={setUserMessages}
               setToken={setToken}
             />
           </Route>
@@ -144,4 +145,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
