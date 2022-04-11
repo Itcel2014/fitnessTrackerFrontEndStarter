@@ -3,19 +3,18 @@ import { fetchPosts } from "../api/ajaxHelpers";
 
 // this component displays a search bar above the posts section and filters the posts based on keywords
 
-const Search = ({ posts, setPosts }) => {
+const Search = ({ routines, setRoutines }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [clickedSearch, setClickedSearch] = useState(false);
   const [clickedClear, setClickedClear] = useState(false);
 
-  function postMatches(post, searchTerm) {
-  
+  function routineMatches(routine, searchTerm) {
+    //update according to the API
     if (
-      post.title.includes(searchTerm) ||
-      post.description.includes(searchTerm) ||
-      post.price.includes(searchTerm) ||
-      post.location.includes(searchTerm) ||
-      post.author.username.includes(searchTerm)
+      routine.name.includes(searchTerm) ||
+      routine.goal.includes(searchTerm) ||
+      routine.creatorName.includes(searchTerm) ||
+      routine.activities.includes(searchTerm)
     ) {
       return true;
     }
@@ -23,20 +22,19 @@ const Search = ({ posts, setPosts }) => {
 
   // The useEffects below display the filtered results and allows a clear button to return the state to all posts
   useEffect(() => {
-    const filteredPostsArray = posts.filter((post) =>
-      postMatches(post, searchTerm)
+    const filteredRoutinesArray = routines.filter((routine) =>
+      routineMatches(routine, searchTerm)
     );
-    setPosts(filteredPostsArray);
+    setRoutines(filteredRoutinesArray);
   }, [clickedSearch]);
 
   useEffect(() => {
-    const getPosts = async () => {
-      const postsArray = await fetchPosts();
-      setPosts(postsArray);
+    const getRoutines = async () => {
+      const routinesArray = await fetchRoutines();
+      setRoutines(routinesArray);
     };
-    getPosts();
+    getRoutines();
   }, [clickedClear]);
-
 
   return (
     <form
