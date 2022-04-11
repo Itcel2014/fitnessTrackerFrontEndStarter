@@ -2,7 +2,7 @@ import { useState } from "react";
 import { editPost } from "../api/ajaxHelpers";
 import React from "react";
 
-const EditPostCard = ({ token, post, posts, setPosts, setClickedEdit }) => {
+const EditRoutine = ({ token, post, posts, setPosts, setClickedEdit }) => {
   const [editTitle, setEditTitle] = useState("");
   const [editDescription, setEditDescription] = useState("");
   const [editPrice, setEditPrice] = useState("");
@@ -91,4 +91,4 @@ const EditPostCard = ({ token, post, posts, setPosts, setClickedEdit }) => {
   );
 };
 
-export default EditPostCard;
+export default EditRoutine;

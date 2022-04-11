@@ -104,7 +104,7 @@
     padding: 0;
   }
   
-  .post-page {
+  .routine-page {
     background-color: #7789bf;
     width: 58%;
     margin: 0.5rem 0;
@@ -233,7 +233,7 @@
   }
   
   /* NEW POST SPECIFIC */
-  .newpost-page {
+  .newroutine-page {
     width: 38%;
     margin: 0.5rem 0;
     padding: 0.5rem;

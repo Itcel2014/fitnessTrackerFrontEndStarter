@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchPosts } from "../api/ajaxHelpers";
+import { fetchRoutines } from "../api/ajaxHelpers";
 
 // this component displays a search bar above the posts section and filters the posts based on keywords
 

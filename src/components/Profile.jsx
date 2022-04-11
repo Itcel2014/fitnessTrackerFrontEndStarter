@@ -3,7 +3,7 @@ import deleteTrash from "./images/deleteTrash.png";
 import editPencil from "./images/editPencil.png";
 import { fetchUserData, deletePost } from "../api/ajaxHelpers";
 import Messages from "./Messages";
-import EditPostCard from "./EditPostCard";
+import EditPostCard from "./EditRoutine";
 
 
 const Profile = ({

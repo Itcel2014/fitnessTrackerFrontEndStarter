@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import deleteTrash from "./images/deleteTrash.png";
 import editPencil from "./images/editPencil.png";
 import mailIcon from "./images/mailIcon.png";
-import { sendMessage, deletePost } from "../api/ajaxHelpers";
-import EditPostCard from "./EditPostCard";
+import { deleteRoutine } from "../api/ajaxHelpers";
+import EditRoutine from "./EditRoutine";
 
 const SinglePost = ({ post, token, isLoggedIn, username, posts, setPosts }) => {
   const [message, setMessage] = useState("");
