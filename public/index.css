@@ -225,7 +225,7 @@
     color: #03258c;
   }
   
-  .newpost-form {
+  .newroutine-form {
     margin: 0.5rem;
     padding: 0.5rem;
     background-color: #f2f2f2;
@@ -234,19 +234,19 @@
     color: #03258c;
   }
   
-  .newpost-form input,
-  .newpost-form textarea {
+  .newroutine-form input,
+  .newroutine-form textarea {
     padding: 0.5rem;
     border: 2px solid #1f3b73;
     margin-bottom: 1rem;
   }
   
-  .newpost-form textarea {
+  .newroutine-form textarea {
     height: 10rem;
     resize: none;
   }
   
-  .newpost-form button {
+  .newroutine-form button {
     align-self: flex-end;
     color: #03258c;
   }

@@ -1,91 +1,82 @@
 import { useState } from "react";
-import { editPost } from "../api/ajaxHelpers";
+import { EditRoutine } from "../api/ajaxHelpers";
 import React from "react";
 
-const EditRoutine = ({ token, post, posts, setPosts, setClickedEdit }) => {
-  const [editTitle, setEditTitle] = useState("");
-  const [editDescription, setEditDescription] = useState("");
-  const [editPrice, setEditPrice] = useState("");
-  const [editLocation, setEditLocation] = useState("");
-  const [editWillDeliver, setEditWillDeliver] = useState(false);
+const EditRoutine = ({
+  token,
+  routine,
+  routines,
+  setRoutines,
+  setClickedEdit,
+}) => {
+  const [editName, setEditName] = useState("");
+  const [editGoal, setEditGoal] = useState("");
+  const [editActivities, setActivities] = useState("");
+  const [editCreatorName, setEditCreatorName] = useState("");
 
-  // the below return statement is the drop-down fillable form for editing posts
+  // the below return statement is the drop-down fillable form for editing routines
   // each item is wrapped inside of ternarys to allow for optional editing
-  
+
   return (
     <>
       <form
-        className="editpost-form"
+        className="editRoutine-form"
         onSubmit={async (e) => {
           e.preventDefault();
           try {
-            const editPostObj = {
-              title: editTitle !== "" ? editTitle : post.title,
-              description:
-                editDescription !== "" ? editDescription : post.description,
-              price: editPrice !== "" ? editPrice : post.price,
-              location: editLocation !== "" ? editLocation : post.location,
-              willDeliver:
-                editWillDeliver === post.willDeliver
-                  ? post.willDeliver
-                  : editWillDeliver,
+            const editRoutineObj = {
+              Name: editName !== "" ? editName : routine.name,
+              Goal: editGoal !== "" ? editGoal : routine.goal,
+              creatorName:
+                editCreatorName !== "" ? editCreatorName : routine.creatorName,
+              Activities:
+                editActivities !== "" ? editActivities : routine.activities,
             };
-            const response = await editPost(editPostObj, post._id, token);
-            const editedPost = response.data.post;
-            const filteredPosts = posts.filter((postObj) => {
-              return postObj._id !== editedPost._id;
+            const response = await editRoutine(
+              editRoutineObj,
+              routine._id,
+              token
+            );
+            const editedRoutine = response.data.routine;
+            const filteredRoutines = routines.filter((routineObj) => {
+              return routineObj._id !== editedRoutine._id;
             });
-            const newArr = [editedPost, ...filteredPosts];
-            setPosts(newArr);
+            const newArr = [editedRoutine, ...filteredRoutines];
+            setRoutines(newArr);
             setClickedEdit(false);
           } catch (error) {
             console.error(error);
           }
         }}
       >
-        <label>Edit Title</label>
+        <label>Edit Name</label>
         <input
           type="text"
-          placeholder="Optional edited title"
-          value={editTitle}
+          placeholder="Optional edited name"
+          value={editName}
           onChange={(e) => {
-            setEditTitle(e.target.value);
+            setEditName(e.target.value);
           }}
         />
-        <label>Edit Description</label>
+        <label>Edit Goal</label>
         <textarea
-          placeholder="Optional edited description"
-          value={editDescription}
+          placeholder="Optional edited goal"
+          value={editGoal}
           onChange={(e) => {
-            setEditDescription(e.target.value);
+            setEditGoal(e.target.value);
           }}
         />
-        <label>Edit Price</label>
+        <label>Edit Activities</label>
         <input
           type="text"
-          placeholder="Optional edited price"
-          value={editPrice}
+          placeholder="Optional edited activities"
+          value={editActivities}
           onChange={(e) => {
-            setEditPrice(e.target.value);
+            setEditActivities(e.target.value);
           }}
         />
-        <label>Edit Location</label>
-        <input
-          type="text"
-          placeholder="Optional edited location"
-          value={editLocation}
-          onChange={(e) => {
-            setEditLocation(e.target.value);
-          }}
-        />
-        <label>Edit Will Deliver?</label>
-        <input
-          type="checkbox"
-          onChange={() => {
-            setEditWillDeliver(true);
-          }}
-        />
-        <button type="submit">Edit Post</button>
+
+        <button type="submit">Edit Routine</button>
       </form>
     </>
   );
