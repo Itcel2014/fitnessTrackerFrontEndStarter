@@ -96,7 +96,7 @@
     color: #03258c;
   }
   
-  /* POST BODY */
+  /* ROUTINE BODY */
   .container {
     display: flex;
     width: 100%;
@@ -131,7 +131,7 @@
     width: 70%;
   }
   
-  .post-card {
+  .routine-card {
     background-color: #f2f2f2;
     padding: 1rem;
     margin: 0.5rem;
@@ -139,15 +139,15 @@
     flex-direction: column;
   }
   
-  .post-price, .post-location, .post-deliver{
+  .routine-goal, .routine-activities{
   font-size: 1rem;
   }
   
-  .post-time {
+  .routine-time {
     font-size: 0.75rem;
   }
   
-  .post-title {
+  .routine-name {
     color: #03258c;
     text-decoration: underline;
     padding-bottom: 0.5rem;
@@ -188,26 +188,9 @@
     margin-right: 5px;
   }
   
-  .message-form {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-  }
+ 
   
-  .message-form form {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding-top: 0.5rem;
-  }
-  
-  .message-form form input{
-    padding: 0.5rem;
-    border: 2px solid #1f3b73;
-    width: 75%;
-  }
-  
-  .editpost-form {
+  .editroutine-form {
     display: flex;
     flex-direction: column;
     height: fit-content;
@@ -215,19 +198,19 @@
     align-self: center;
   }
   
-  .editpost-form input,
-  .editpost-form textarea {
+  .editroutine-form input,
+  .editroutine-form textarea {
     padding: 0.5rem;
     border: 2px solid #1f3b73;
     margin-bottom: 1rem;
   }
   
-  .editpost-form textarea {
+  .editroutine-form textarea {
     resize: none;
     height: 3rem;
   }
   
-  .editpost-form button {
+  .editroutine-form button {
     align-self: flex-end;
     color: #03258c;
   }

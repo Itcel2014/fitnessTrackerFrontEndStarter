@@ -1,33 +1,32 @@
 import React, { useState } from "react";
 import deleteTrash from "./images/deleteTrash.png";
 import editPencil from "./images/editPencil.png";
-import mailIcon from "./images/mailIcon.png";
 import { deleteRoutine } from "../api/ajaxHelpers";
 import EditRoutine from "./EditRoutine";
 
-const SinglePost = ({ post, token, isLoggedIn, username, posts, setPosts }) => {
-  const [message, setMessage] = useState("");
-  const [clickedMessage, setClickedMessage] = useState(false);
-  const [messageSent, setMessageSent] = useState(false);
+const SingleRoutine = ({ routine, token, isLoggedIn, username, routines, setRoutines }) => {
+  // const [message, setMessage] = useState("");
+  // const [clickedMessage, setClickedMessage] = useState(false);
+  // const [messageSent, setMessageSent] = useState(false);
   const [clickedEdit, setClickedEdit] = useState(false);
-  const postCard = (
+  const routineCard = (
     <>
-      {/* this postCard is the main framework for the individual posts */}
-      <h3 className="post-title">{post.title}</h3>
-      <h4 className="post-username">Posted by: {post.author.username}</h4>
+      {/* this routineCard is the main framework for the individual routines */}
+      <h3 className="routine-name">{routine.name}</h3>
+      <h4 className="routine-creatorName">Posted by: {post.author.username}</h4>
       <br />
-      <h5 className="post-location">Location: {post.location}</h5>
-      <h6 className="post-deliver">
-        Will deliver? {post.willDeliver ? "Yes" : "No"}
-      </h6>
+      <h5 className="routine-goal">Goal: {routine.goal}</h5>
+      
 
       <br />
-      <h5 className="post-price">Price: {post.price}</h5>
+      <h5 className="routine-activities">Activities: {routine.activities}</h5>
       <br />
-      <p className="post-content">{post.description}</p>
+      <p className="routine-duration">Duration:{routine.duration}</p>
       <br />
-      <span className="post-time">
-        <p className="post-created">
+      <p className="routine-count">Count:{routine.count}</p>
+      <br />
+      <span className="routine-time">
+        <p className="routine-created">
           Created On: {new Date(post.createdAt).toLocaleString()}
         </p>
         {post.updatedAt !== post.createdAt ? (
@@ -39,50 +38,16 @@ const SinglePost = ({ post, token, isLoggedIn, username, posts, setPosts }) => {
       <br />
     </>
   );
-  const messageForm = (
-    // this form is for sending messages
-    <form 
-      onSubmit={(e) => {
-        e.preventDefault();
-        sendMessage(message, post._id, token);
-        setClickedMessage(false);
-        setMessageSent(true);
-      }}
-    >
-      <input
-        type="text"
-        placeholder="Message"
-        value={message}
-        onChange={(e) => {
-          setMessage(e.target.value);
-        }}
-      />
-      <button type="submit">Send</button>
-    </form>
-  );
+
   const postButtons = (
     // these are the buttons that also contain the edit post form and component link
-    <>
-      {/* If user is logged in and is not the post author, display Message button only */}
-      <div className="button-container">
-        {isLoggedIn && post.author.username !== username ? (
-          <button
-            className="post-button"
-            id="message"
-            onClick={(e) => {
-              e.preventDefault();
-              setClickedMessage(!clickedMessage);
-            }}
-          >
-            {<img src={mailIcon} alt="message icon" />} Message
-          </button>
-        ) : null}
-        {/* If user is logged in and is the post author, display Edit and Delete */}
-        {isLoggedIn && post.author.username === username ? (
+    <> 
+        {/* If user is logged in and is the routine author, display Edit and Delete */}
+        {isLoggedIn && routine.creatorName === username ? (
           <>
-            {/* the Edit button functions are in the file EditPostCard.jsx */}
+            {/* the Edit button functions are in the file EditRoutine.jsx */}
             <button
-              className="post-button"
+              className="routine-button"
               id="edit"
               onClick={(e) => {
                 e.preventDefault();
@@ -92,44 +57,42 @@ const SinglePost = ({ post, token, isLoggedIn, username, posts, setPosts }) => {
               {<img src={editPencil} alt="pencil icon" />} Edit
             </button>
             <button
-              className="post-button"
+              className="routine-button"
               id="delete"
               onClick={(e) => {
                 e.preventDefault();
-                deletePost(post._id, token);
-                const filteredPosts = posts.filter((postObj) => {
-                  return postObj._id !== post._id;
+                deletePost(routine._id, token);
+                const filteredRoutines = routines.filter((routineObj) => {
+                  return routineObj._id !== routine._id;
                 });
-                setPosts(filteredPosts);
+                setRoutines(filteredRoutines);
               }}
             >
               {<img src={deleteTrash} alt="trash icon" />}Delete
             </button>
           </>
         ) : null}
-      </div>
-      {/* This is form for editing a post and will only display if user is logged in and clicks the edit button*/}
-      <div className="editpost-form">
+      {/*</div>
+       This is form for editing a routine and will only display if user is logged in and clicks the edit button*/}
+      <div className="editroutine-form">
         {clickedEdit ? (
-          <EditPostCard
+          <EditRoutine
             setClickedEdit={setClickedEdit}
-            posts={posts}
-            setPosts={setPosts}
+            routines={routines}
+            setRoutines={setRoutines}
             token={token}
-            post={post}
+            routine={routine}
           />
         ) : null}
       </div>
-      <div className="message-form">{clickedMessage ? messageForm : null}</div>
-      <div className="message-sent">{messageSent ? "Message Sent" : null}</div>
     </>
   );
   return (
-    <div className="post-card">
-      {postCard}
-      {postButtons}
+    <div className="routine-card">
+      {routineCard}
+      {routineButtons}
     </div>
   );
 };
 
-export default SinglePost;
+export default SingleRoutine;
