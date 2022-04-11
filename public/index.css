@@ -1,0 +1,407 @@
+/* Site wide */
+* {
+    /* border: 0; */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  body {
+    background-color: #f2f2f2;
+  }
+  
+  #root {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    background: url("./images/ufoImage.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 90% 100%;
+  }
+  
+  .app {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* HEADER */
+  
+  header {
+    padding-top: 5px;
+    font-size: xx-large;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #03258c;
+    position: relative;
+    padding: 1rem;
+  }
+  
+  header h2 {
+    padding-top: 0.5rem;
+    font-size: large;
+    color:black;
+  }
+  
+  .is-logged-in {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+  
+  .navbar {
+    background-color: #7789bf;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    align-self: center;
+    width: 98vw;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    
+    border: 2px solid #1f3b73;
+  }
+  
+  .navbar ul {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    background-color: #7789bf;
+    list-style: none;
+  
+  }
+  
+  .navbar a {
+    color:#f2f2f2
+  }
+  
+  .navbar a:hover{
+    color:#1f3b73
+  }
+  
+  h2 {
+    color: #03258c;
+  }
+  
+  /* POST BODY */
+  .container {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    padding: 0;
+  }
+  
+  .post-page {
+    background-color: #7789bf;
+    width: 58%;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    height: fit-content;
+  }
+  
+  #search {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    background-color: #f2f2f2;
+    display: flex;
+    color: #03258c;
+    align-items: center;
+  }
+  
+  #search label {
+    margin: 0.5rem;
+    font-weight: bold;
+  }
+  
+  #search input {
+    padding: 0.5rem;
+    width: 70%;
+  }
+  
+  .post-card {
+    background-color: #f2f2f2;
+    padding: 1rem;
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .post-price, .post-location, .post-deliver{
+  font-size: 1rem;
+  }
+  
+  .post-time {
+    font-size: 0.75rem;
+  }
+  
+  .post-title {
+    color: #03258c;
+    text-decoration: underline;
+    padding-bottom: 0.5rem;
+  }
+  
+  .button {
+    background-color: #f2f2f2;
+    border-radius: 10%;
+    align-items: center;
+    font-size: large;
+  }
+  .button #text {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+  
+  .button #message.button {
+    padding-bottom: 0px;
+  }
+  
+  .img {
+    padding-bottom: 0;
+  }
+  
+  button {
+    background-color: #f2f2f2;
+    padding: 0.5rem;
+    margin: 0.25rem;
+    font-size: 13px;
+    width: fit-content;
+  }
+  
+  button img {
+    height: 13px;
+    width: 13px;
+    border-radius: 0;
+    margin-right: 5px;
+  }
+  
+  .message-form {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .message-form form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 0.5rem;
+  }
+  
+  .message-form form input{
+    padding: 0.5rem;
+    border: 2px solid #1f3b73;
+    width: 75%;
+  }
+  
+  .editpost-form {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: 75%;
+    align-self: center;
+  }
+  
+  .editpost-form input,
+  .editpost-form textarea {
+    padding: 0.5rem;
+    border: 2px solid #1f3b73;
+    margin-bottom: 1rem;
+  }
+  
+  .editpost-form textarea {
+    resize: none;
+    height: 3rem;
+  }
+  
+  .editpost-form button {
+    align-self: flex-end;
+    color: #03258c;
+  }
+  
+  /* NEW POST SPECIFIC */
+  .newpost-page {
+    width: 38%;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background-color: #7789bf;
+    height: fit-content;
+    color: #03258c;
+  }
+  
+  .newpost-form {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    color: #03258c;
+  }
+  
+  .newpost-form input,
+  .newpost-form textarea {
+    padding: 0.5rem;
+    border: 2px solid #1f3b73;
+    margin-bottom: 1rem;
+  }
+  
+  .newpost-form textarea {
+    height: 10rem;
+    resize: none;
+  }
+  
+  .newpost-form button {
+    align-self: flex-end;
+    color: #03258c;
+  }
+  
+  /* REGISTER SPECIFIC */
+  .register-page {
+    height: 75.75vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .register-page h2 {
+    align-self: center;
+  }
+  
+  .register-page form {
+    display: flex;
+    flex-direction: column;
+    background-color: #7890BF ;
+    border: 2px solid #1f3b73;
+    margin: 2rem;
+    padding: 3rem;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    color: #03258c;
+  }
+  
+  .register-page input {
+    padding: 0.5rem;
+    border: 2px solid #1f3b73;
+    margin-bottom: 1rem;
+  }
+  
+  
+  .register-form button {
+    align-self: flex-end;
+    color: #03258c;
+  }
+  
+  .register-page button {
+    align-self: flex-end;
+  }
+  
+  .register-page .login-confirmation {
+    align-self: center;
+    color: #1f3b73;
+  }
+  
+  /* LOGIN SPECIFIC */
+  
+  .login-page {
+    height: 75.75vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login-page h2 {
+    align-self: center;
+  }
+  
+  .login-page form {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #1f3b73;
+    margin: 2rem;
+    padding: 3rem;
+    background-color: #7890BF ;
+  }
+  
+  .login-page input {
+    padding: 0.5rem;
+    border: 2px solid #1f3b73;
+    margin-bottom: 1rem;
+  }
+  
+  .login-page button {
+    align-self: flex-end;
+  }
+  
+  .login-page .login-confirmation {
+    align-self: center;
+    color: #1f3b73;
+  }
+  /* Profile Page */
+  
+  .profile-page {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  
+  /* Messages Card */
+  
+  .message-page {
+    background-color: #7789bf;
+    width: 38%;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    height: fit-content;
+    color: #03258c;
+  }
+  
+  .message-card {
+    background-color: #f2f2f2;
+    padding: 1rem;
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .message-card h4, .message-card p{
+    color:black; 
+  }
+  
+  .message-card h3{
+    padding-bottom: 0.5rem;
+    text-decoration: underline;
+  }
+  
+  .message-input {
+    color: black;
+    padding: 0.5rem;
+  }
+  
+  /* Media Queries */
+  @media only screen and (max-width: 1000px) {
+    .is-logged-in {
+      top: 0;
+      right: 0;
+      font-size: 0.5rem;
+    }
+  
+    .is-logged-in img{
+      width: 50%;
+    }
+  }
