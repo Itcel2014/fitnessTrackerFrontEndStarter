@@ -55,7 +55,6 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Routines
-              // from Posts
               routines={routines}
               setRoutines={setRoutines}
               isLoggedIn={isLoggedIn}
@@ -63,7 +62,6 @@ function App() {
               username={username}
             />
             <NewRoutine
-              // NewPosts needs to change to new routines
               routines={routines}
               setRoutines={setRoutines}
               isLoggedIn={isLoggedIn}

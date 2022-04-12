@@ -168,4 +168,4 @@ const MyRoutines = ({
   );
 };
 
-export default Profile;
+export default MyRoutines;
