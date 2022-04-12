@@ -21,7 +21,7 @@ const Routines = ({ routines, setRoutines, isLoggedIn, token, username }) => {
       <Search routines={routines} setRoutines={setRoutines} />
 
       {routines.map((routine, i) => {
-        // the below section displays the individual posts
+        // the below section displays the individual routines
         return (
           <SingleRoutine
             key={i}

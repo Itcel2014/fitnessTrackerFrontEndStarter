@@ -1,67 +1,58 @@
 import { API_URL } from "./ajaxHelpers";
 
-
-export async function fetchPosts() {
-    try {
-      const response = await fetch(`${APIURL}posts`);
-      const data = await response.json();
-      return data.data.posts;
-    } catch (err) {
-      throw err;
-    }
-  }
-
-  export async function createPost(postObj, token) {
-    const response = await fetch(`${APIURL}posts`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        post: {
-          title: postObj.title,
-          description: postObj.description,
-          location: postObj.location,
-          price: postObj.price,
-          willDeliver: postObj.willDeliver,
-        },
-      }),
-    });
+export async function fetchRoutines() {
+  try {
+    const response = await fetch(`${APIURL}routines`);
     const data = await response.json();
-    return data;
+    return data.data.routines;
+  } catch (err) {
+    throw err;
   }
+}
 
-  export async function deletePost(postId, token) {
-    const response = await fetch(`${APIURL}posts/${postId}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const data = await response.json();
-    return data;
-  }
+export async function createRoutine(routineObj, token) {
+  const response = await fetch(`${APIURL}routines`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name: routineObj.name,
+      goal: routineObj.goal,
+      isPublic: routineObj.isPublic,
+    }),
+  });
+  const data = await response.json();
+  return data;
+}
 
-  export async function editPost(editPostObj, postId, token) {
-    const response = await fetch(`${APIURL}posts/${postId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        post: {
-          title: editPostObj.title,
-          description: editPostObj.description,
-          price: editPostObj.price,
-          location: editPostObj.location,
-          willDeliver: editPostObj.willDeliver,
-        },
-      }),
-    });
-    const data = await response.json();
-    console.log(data)
-    return data;
-  }
+export async function deleteRoutine(routineId, token) {
+  const response = await fetch(`${APIURL}routines/${routineId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const data = await response.json();
+  return data;
+}
+
+export async function editRoutine(editRoutineObj, routineId, token) {
+  const response = await fetch(`${APIURL}routines/${routineId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name: editRoutineObj.name,
+      goal: editRoutineObj.goal,
+      isPublic: editRoutineObj.isPublic,
+    }),
+  });
+  const data = await response.json();
+  console.log(data);
+  return data;
+}

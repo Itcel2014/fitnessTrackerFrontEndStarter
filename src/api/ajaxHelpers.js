@@ -1,5 +1,5 @@
 // You can choose to import all your functions, and re-export them here
-export const APIURL = "https://fitnesstrac-kr.herokuapp.com/api/2202-FTB-ET-WEB-FT/";
+export const APIURL = "http://fitnesstrac-kr.herokuapp.com/api/";
 
 
 export async function fetchQueryResults({ queryString }) {
