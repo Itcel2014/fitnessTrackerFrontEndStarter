@@ -5,15 +5,13 @@ import { deleteRoutine } from "../api/ajaxHelpers";
 import EditRoutine from "./EditRoutine";
 
 const SingleRoutine = ({ routine, token, isLoggedIn, username, routines, setRoutines }) => {
-  // const [message, setMessage] = useState("");
-  // const [clickedMessage, setClickedMessage] = useState(false);
-  // const [messageSent, setMessageSent] = useState(false);
+
   const [clickedEdit, setClickedEdit] = useState(false);
   const routineCard = (
     <>
       {/* this routineCard is the main framework for the individual routines */}
       <h3 className="routine-name">{routine.name}</h3>
-      <h4 className="routine-creatorName">Posted by: {post.author.username}</h4>
+      <h4 className="routine-creatorName">Posted by: {routine.creatorName}</h4>
       <br />
       <h5 className="routine-goal">Goal: {routine.goal}</h5>
       
@@ -27,11 +25,11 @@ const SingleRoutine = ({ routine, token, isLoggedIn, username, routines, setRout
       <br />
       <span className="routine-time">
         <p className="routine-created">
-          Created On: {new Date(post.createdAt).toLocaleString()}
+          Created On: {new Date(routine.createdAt).toLocaleString()}
         </p>
-        {post.updatedAt !== post.createdAt ? (
-          <p className="post-updated">
-            Last Updated On: {new Date(post.updatedAt).toLocaleString()}
+        {routine.updatedAt !== routine.createdAt ? (
+          <p className="routine-updated">
+            Last Updated On: {new Date(routine.updatedAt).toLocaleString()}
           </p>
         ) : null}
       </span>
@@ -39,8 +37,8 @@ const SingleRoutine = ({ routine, token, isLoggedIn, username, routines, setRout
     </>
   );
 
-  const postButtons = (
-    // these are the buttons that also contain the edit post form and component link
+  const routineButtons = (
+    // these are the buttons that also contain the edit routine form and component link
     <> 
         {/* If user is logged in and is the routine author, display Edit and Delete */}
         {isLoggedIn && routine.creatorName === username ? (
@@ -61,7 +59,7 @@ const SingleRoutine = ({ routine, token, isLoggedIn, username, routines, setRout
               id="delete"
               onClick={(e) => {
                 e.preventDefault();
-                deletePost(routine._id, token);
+                deleteRoutine(routine._id, token);
                 const filteredRoutines = routines.filter((routineObj) => {
                   return routineObj._id !== routine._id;
                 });

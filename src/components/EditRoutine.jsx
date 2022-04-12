@@ -11,8 +11,8 @@ const EditRoutine = ({
 }) => {
   const [editName, setEditName] = useState("");
   const [editGoal, setEditGoal] = useState("");
-  const [editActivities, setActivities] = useState("");
-  const [editCreatorName, setEditCreatorName] = useState("");
+  const [editIsPublic, setIsPublic] = useState(true);
+ 
 
   // the below return statement is the drop-down fillable form for editing routines
   // each item is wrapped inside of ternarys to allow for optional editing
@@ -29,8 +29,8 @@ const EditRoutine = ({
               Goal: editGoal !== "" ? editGoal : routine.goal,
               creatorName:
                 editCreatorName !== "" ? editCreatorName : routine.creatorName,
-              Activities:
-                editActivities !== "" ? editActivities : routine.activities,
+              IsPublic:
+                editIsPublic !== "" ? editIsPublic : routine.isPublic,
             };
             const response = await editRoutine(
               editRoutineObj,
@@ -67,6 +67,7 @@ const EditRoutine = ({
           }}
         />
         <label>Edit Activities</label>
+        {/* look for Edit Ispublic and checkboxes from stranger's things */}
         <input
           type="text"
           placeholder="Optional edited activities"

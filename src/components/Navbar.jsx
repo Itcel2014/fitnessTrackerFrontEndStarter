@@ -40,6 +40,9 @@ const Navbar = ({
           <Link to="/routines">Routines</Link>
         </li>
         <li>
+          <Link to="/activities">Activities</Link>
+        </li>
+        <li>
           <Link to="/MyRoutines">My Routines</Link>
         </li>
 

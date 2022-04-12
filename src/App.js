@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import alienIcon from "./images/alienIcon.png";
 import {
   Routines,
+  Activities,
   Navbar,
   NewRoutine,
   MyRoutines,
@@ -16,7 +17,7 @@ function App() {
   const [password, setPassword] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [routines, setRoutines] = useState([]);
-
+  const [activities, setActivities] = useState([]);
   const [token, setToken] = useState("");
   const [userRoutines, setUserRoutines] = useState([]);
   // userRoutines
@@ -80,7 +81,7 @@ function App() {
               token={token}
               username={username}
             />
-            <NewRoutines
+            <NewRoutine
               routines={routines}
               setRoutines={setRoutines}
               isLoggedIn={isLoggedIn}
@@ -92,8 +93,8 @@ function App() {
           <Route path="/activities">
             <Activities
               // new
-              userRoutines={userRoutines}
-              setUserRoutines={setUserRoutines}
+              Activities={Activities}
+              setActivities={setActivities}
               isLoggedIn={isLoggedIn}
               token={token}
               username={username}

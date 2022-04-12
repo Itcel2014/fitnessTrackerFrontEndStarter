@@ -215,6 +215,126 @@
     color: #03258c;
   }
   
+ /* Activity Specific */
+ .container {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    padding: 0;
+  }
+  
+  .activity-page {
+    background-color: #7789bf;
+    width: 58%;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    height: fit-content;
+  }
+  
+  #search {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    background-color: #f2f2f2;
+    display: flex;
+    color: #03258c;
+    align-items: center;
+  }
+  
+  #search label {
+    margin: 0.5rem;
+    font-weight: bold;
+  }
+  
+  #search input {
+    padding: 0.5rem;
+    width: 70%;
+  }
+  
+  .activity-card {
+    background-color: #f2f2f2;
+    padding: 1rem;
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .activity-goal, .activity-activities{
+  font-size: 1rem;
+  }
+  
+  .activity-time {
+    font-size: 0.75rem;
+  }
+  
+  .activity-name {
+    color: #03258c;
+    text-decoration: underline;
+    padding-bottom: 0.5rem;
+  }
+  
+  .button {
+    background-color: #f2f2f2;
+    border-radius: 10%;
+    align-items: center;
+    font-size: large;
+  }
+  .button #text {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+  
+  .button #message.button {
+    padding-bottom: 0px;
+  }
+  
+  .img {
+    padding-bottom: 0;
+  }
+  
+  button {
+    background-color: #f2f2f2;
+    padding: 0.5rem;
+    margin: 0.25rem;
+    font-size: 13px;
+    width: fit-content;
+  }
+  
+  button img {
+    height: 13px;
+    width: 13px;
+    border-radius: 0;
+    margin-right: 5px;
+  }
+  
+ 
+  
+  .editactivity-form {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: 75%;
+    align-self: center;
+  }
+  
+  .editactivity-form input,
+  .editactivity-form textarea {
+    padding: 0.5rem;
+    border: 2px solid #1f3b73;
+    margin-bottom: 1rem;
+  }
+  
+  .editactivity-form textarea {
+    resize: none;
+    height: 3rem;
+  }
+  
+  .editactivity-form button {
+    align-self: flex-end;
+    color: #03258c;
+  }
+
+
   /* NEW POST SPECIFIC */
   .newroutine-page {
     width: 38%;
