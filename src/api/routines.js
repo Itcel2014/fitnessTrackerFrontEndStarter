@@ -2,7 +2,7 @@ import { API_URL } from "./ajaxHelpers";
 
 export async function fetchRoutines() {
   try {
-    const response = await fetch(`${APIURL}routines`);
+    const response = await fetch(`${API_URL}routines`);
     const data = await response.json();
     return data.data.routines;
   } catch (err) {
@@ -11,7 +11,7 @@ export async function fetchRoutines() {
 }
 
 export async function createRoutine(routineObj, token) {
-  const response = await fetch(`${APIURL}routines`, {
+  const response = await fetch(`${API_URL}routines`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -28,7 +28,7 @@ export async function createRoutine(routineObj, token) {
 }
 
 export async function deleteRoutine(routineId, token) {
-  const response = await fetch(`${APIURL}routines/${routineId}`, {
+  const response = await fetch(`${API_URL}routines/${routineId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

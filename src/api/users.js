@@ -2,7 +2,7 @@ import { API_URL } from "./ajaxHelpers";
 
 export async function fetchUserData(token) {
     try {
-      const response = await fetch(`${APIURL}users/me`, {
+      const response = await fetch(`${API_URL}users/me`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -17,7 +17,7 @@ export async function fetchUserData(token) {
 
   export async function registerUser(username, password) {
     try {
-      const response = await fetch(`${APIURL}users/register`, {
+      const response = await fetch(`${API_URL}users/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -36,7 +36,7 @@ export async function fetchUserData(token) {
 
   export async function fetchUserToken(username, password) {
     try {
-      const response = await fetch(`${APIURL}users/login`, {
+      const response = await fetch(`${API_URL}users/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

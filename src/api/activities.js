@@ -2,7 +2,7 @@ import { API_URL } from "./ajaxHelpers";
 
 export async function fetchActivities() {
   try {
-    const response = await fetch(`${APIURL}activities`);
+    const response = await fetch(`${API_URL}activities`);
     const data = await response.json();
     return data.data.activities;
   } catch (err) {
@@ -11,7 +11,7 @@ export async function fetchActivities() {
 }
 
 export async function createActivity(activityObj, token) {
-  const response = await fetch(`${APIURL}activities`, {
+  const response = await fetch(`${API_URL}activities`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -27,7 +27,7 @@ export async function createActivity(activityObj, token) {
 }
 
 export async function deleteActivity(activityId, token) {
-  const response = await fetch(`${APIURL}activities/${activityId}`, {
+  const response = await fetch(`${API_URL}activities/${activityId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -46,9 +46,9 @@ export async function editActivity(editActivityObj, activityId, token) {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      name: editRoutineObj.name,
-      goal: editRoutineObj.goal,
-      isPublic: editRoutineObj.isPublic,
+      name: editActivityObj.name,
+      goal: editActivityObj.goal,
+      isPublic: editActivityObj.isPublic,
     }),
   });
   const data = await response.json();
