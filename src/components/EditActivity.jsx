@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { EditActivity } from "../api/ajaxHelpers";
+import { editActivity } from "../api/activities";
 import React from "react";
 
-const EditActivity = ({
+const UpdateActivity = ({
   token,
   activity,
   activities,
@@ -11,7 +11,7 @@ const EditActivity = ({
 }) => {
   const [editName, setEditName] = useState("");
   const [editDescription, setEditDescription] = useState("");
-  const [editActivities, setActivities] = useState("");
+  // const [editActivities, setActivities] = useState("");
   
 
   // the below return statement is the drop-down fillable form for editing activities
@@ -68,4 +68,4 @@ const EditActivity = ({
   );
 };
 
-export default EditActivity;
+export default UpdateActivity;

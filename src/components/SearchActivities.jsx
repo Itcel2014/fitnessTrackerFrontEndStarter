@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { fetchActivities } from "../api/ajaxHelpers";
+import { fetchActivities } from "../api/activities";
 
-// this component displays a search bar above the posts section and filters the posts based on keywords
+// this component displays a search bar above the routines section and filters the routines based on keywords
 
 const SearchActivities = ({ activities, setActivities }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [clickedSearch, setClickedSearch] = useState(false);
   const [clickedClear, setClickedClear] = useState(false);
 
-  function activityMatches(activity, searchTerm) {
+  function activityMatches(activity, routine, searchTerm) {
     //update according to the API
     if (
       activity.name.includes(searchTerm) ||
@@ -20,7 +20,7 @@ const SearchActivities = ({ activities, setActivities }) => {
     }
   }
 
-  // The useEffects below display the filtered results and allows a clear button to return the state to all posts
+  // The useEffects below display the filtered results and allows a clear button to return the state to all routines
   useEffect(() => {
     const filteredActivitiesArray = activities.filter((activity) =>
       activityMatches(activity, searchTerm)

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import deleteTrash from "./images/deleteTrash.png";
 import editPencil from "./images/editPencil.png";
-import { deleteActivity } from "../api/ajaxHelpers";
+import { deleteActivity } from "../api/activities";
 import EditActivity from "./EditActivity";
 
 const SingleActivity = ({ activity, token, isLoggedIn, username, activities, setActivities }) => {
@@ -11,9 +11,9 @@ const SingleActivity = ({ activity, token, isLoggedIn, username, activities, set
     <>
       {/* this activityCard is the main framework for the individual activities */}
       <h3 className="activity-name">{activity.name}</h3>
-      <h4 className="activity-creatorName">Posted by: {post.author.username}</h4>
+      <h4 className="activity-creatorName">Posted by: {activity.creatorName}</h4>
       <br />
-      <h5 className="activity-goal">Goal: {activity.goal}</h5>
+      <h5 className="activity-goal">Description: {activity.description}</h5>
       
 
       <br />

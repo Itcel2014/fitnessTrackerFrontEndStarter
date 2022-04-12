@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { EditRoutine } from "../api/ajaxHelpers";
+import { editRoutine } from "../api/routines";
 import React from "react";
 
 const EditRoutine = ({
@@ -12,7 +12,8 @@ const EditRoutine = ({
   const [editName, setEditName] = useState("");
   const [editGoal, setEditGoal] = useState("");
   const [editIsPublic, setIsPublic] = useState(true);
- 
+  const [editCreatorName, setEditCreatorName] = useState("");
+  const [editActivities, setEditActivities] = useState("");
 
   // the below return statement is the drop-down fillable form for editing routines
   // each item is wrapped inside of ternarys to allow for optional editing

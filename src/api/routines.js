@@ -40,7 +40,7 @@ export async function deleteRoutine(routineId, token) {
 }
 
 export async function editRoutine(editRoutineObj, routineId, token) {
-  const response = await fetch(`${APIURL}routines/${routineId}`, {
+  const response = await fetch(`${API_URL}routines/${routineId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import deleteTrash from "./images/deleteTrash.png";
 import editPencil from "./images/editPencil.png";
-import { deleteRoutine } from "../api/ajaxHelpers";
+import { deleteRoutine } from "../api/routines";
 import EditRoutine from "./EditRoutine";
 
 const SingleRoutine = ({ routine, token, isLoggedIn, username, routines, setRoutines }) => {

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { registerUser } from "../api/ajaxHelpers";
+import { registerUser } from "../api/users";
 
 const Register = ({
   username,

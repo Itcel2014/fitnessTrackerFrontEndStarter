@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { fetchRoutines } from "../api/ajaxHelpers";
+import { fetchRoutines } from "../api/routines";
 
-// this component displays a search bar above the posts section and filters the posts based on keywords
+// this component displays a search bar above the routines section and filters the routines based on keywords
 
 const Search = ({ routines, setRoutines }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -20,7 +20,7 @@ const Search = ({ routines, setRoutines }) => {
     }
   }
 
-  // The useEffects below display the filtered results and allows a clear button to return the state to all posts
+  // The useEffects below display the filtered results and allows a clear button to return the state to all routines
   useEffect(() => {
     const filteredRoutinesArray = routines.filter((routine) =>
       routineMatches(routine, searchTerm)

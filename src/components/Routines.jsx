@@ -1,16 +1,14 @@
 import React, {  useEffect } from "react";
-import { fetchRoutines } from "../api/ajaxHelpers";
-// change fetchPosts to fetchRoutines
+import { fetchRoutines } from "../api/routines";
 import { SingleRoutine } from "./";
-// change SinglePost to SingleRoutine
 import Search from "./Search";
 
-// The posts section displays all posts from the API
+// The routines section displays all routines from the API
 const Routines = ({ routines, setRoutines, isLoggedIn, token, username }) => {
   useEffect(() => {
     const getRoutines = async () => {
       const routinesArray = await fetchRoutines();
-      setPosts(routinesArray);
+      setRoutines(routinesArray);
     };
     getRoutines();
   }, [setRoutines]);

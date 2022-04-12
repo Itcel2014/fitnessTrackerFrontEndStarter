@@ -39,7 +39,7 @@ export async function deleteActivity(activityId, token) {
 }
 
 export async function editActivity(editActivityObj, activityId, token) {
-  const response = await fetch(`${APIURL}activities/${activityId}`, {
+  const response = await fetch(`${API_URL}activities/${activityId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -55,3 +55,4 @@ export async function editActivity(editActivityObj, activityId, token) {
   console.log(data);
   return data;
 }
+

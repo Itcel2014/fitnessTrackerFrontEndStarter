@@ -1,5 +1,5 @@
 import React from "react";
-import { fetchUserToken } from "../api/ajaxHelpers";
+import { fetchUserToken } from "../api/users";
 
 const Login = ({
   username,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { createRoutine } from "../api/ajaxHelpers";
+import { createRoutine } from "../api/routines";
 
 // this component is responsible for creating new routine and is displayed on the right-hand side of the *Routine page//
 
@@ -39,7 +39,7 @@ const NewRoutine = ({ token, routines, setRoutines, isLoggedIn }) => {
             <input
               type="text"
               placeholder="New Name here"
-              value={Name}
+              value={name}
               onChange={(e) => {
                 setName(e.target.value);
               }}

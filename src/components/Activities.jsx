@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchActivities } from "../api/ajaxHelpers";
+import { fetchActivities } from "../api/activities";
 import { SingleActivity } from "./";
 // import Search? or add a SearchActivity?
 import SearchActivities from "./SearchActivities";
@@ -18,7 +18,7 @@ const Activities = ({activities, setActivities, isLoggedIn, token, username}) =>
         <SearchActivities activities={activities} setActivities={setActivities} />
   
         {activities.map((activity, i) => {
-          // the below section displays the individual posts
+          // the below section displays the individual activities
           return (
             <SingleActivity
               key={i}

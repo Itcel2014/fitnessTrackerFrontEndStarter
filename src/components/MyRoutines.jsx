@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import deleteTrash from "./images/deleteTrash.png";
 import editPencil from "./images/editPencil.png";
-import { fetchUserData, deleteRoutine } from "../api/ajaxHelpers";
+import { deleteRoutine } from "../api/routines";
+import { fetchUserData } from "../api/users";
 import EditRoutine from "./EditRoutine";
 
 const MyRoutines = ({
@@ -14,7 +15,7 @@ const MyRoutines = ({
   userActivities,
   setUserActivites,
 }) => {
-  const [routinesDeleted, setRoutinesDeleted] = useState(false);
+  const [routineDeleted, setRoutineDeleted] = useState(false);
   const [clickedEdit, setClickedEdit] = useState(false);
 
   // The below useEffect is responsible for retrieving and filtering the user's routine and activities
@@ -110,7 +111,7 @@ const MyRoutines = ({
                             id="delete"
                             onClick={(e) => {
                               e.preventDefault();
-                              setProfileRoutineDeleted(true);
+                              setRoutineDeleted(true);
                               deleteRoutine(routine._id, token);
                             }}
                           >
@@ -132,7 +133,7 @@ const MyRoutines = ({
                       ) : null}
                     </div>
                     <div className="routine-deleted">
-                      {routinesDeleted ? "Routine Deleted" : null}
+                      {routineDeleted ? "Routine Deleted" : null}
                     </div>
                   </div>
                 );
@@ -141,7 +142,7 @@ const MyRoutines = ({
           </div>
 
           {/* This section is used to display activities created by the user */}
-          <div className="message-page">
+          {/* <div className="message-page">
             {userMess.length === 0 ? (
               <h2>No Messages Yet</h2>
             ) : (
@@ -152,16 +153,16 @@ const MyRoutines = ({
                     <h4>From: {message.fromUser.username}</h4>
                     <br />
                     <p>{message.content}</p>
-                    <br />
+                    <br /> */}
                     {/* This section is to open the Reply form to messages directed to the user */}
-                    {userMessages[i].fromUser.username === username ? null : (
+                    {/* {userMessages[i].fromUser.username === username ? null : (
                       <Messages token={token} message={message} />
                     )}
                   </div>
                 );
               })
             )}
-          </div>
+          </div> */}
         </div>
       )}
     </>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 import alienIcon from "./images/alienIcon.png";
 import {
   Routines,
@@ -52,93 +52,20 @@ function App() {
       <br />
       <div className="container">
         {/* The below section displays the different routes available for display*/}
-        <Switch>
-          <Route exact path="/">
-            <Routines
-              routines={routines}
-              setRoutines={setRoutines}
-              isLoggedIn={isLoggedIn}
-              token={token}
-              username={username}
-            />
-            <NewRoutine
-              routines={routines}
-              setRoutines={setRoutines}
-              isLoggedIn={isLoggedIn}
-              token={token}
-              username={username}
-            />
-          </Route>
+        <Routes>
+          <Route exact path="/" element={<Routines /> } />
+         
+          <Route path="/routines" element= {<Routines />}/>
+           
 
-          <Route path="/routines">
-            <Routines
-              // from Posts
-              routines={routines}
-              setRoutines={setRoutines}
-              isLoggedIn={isLoggedIn}
-              token={token}
-              username={username}
-            />
-            <NewRoutine
-              routines={routines}
-              setRoutines={setRoutines}
-              isLoggedIn={isLoggedIn}
-              token={token}
-              username={username}
-            />
-          </Route>
-
-          <Route path="/activities">
-            <Activities
-              // new
-              Activities={Activities}
-              setActivities={setActivities}
-              isLoggedIn={isLoggedIn}
-              token={token}
-              username={username}
-              setUsername={setUsername}
-              setToken={setToken}
-            />
-          </Route>
-          <Route path="/myRoutines">
-            <MyRoutines
-              // from profile
-              userRoutines={userRoutines}
-              setUserRoutines={setUserRoutines}
-              isLoggedIn={isLoggedIn}
-              token={token}
-              username={username}
-              setUsername={setUsername}
-              setToken={setToken}
-            />
-          </Route>
-
-          <Route path="/login">
-            <Login
-              username={username}
-              setUsername={setUsername}
-              password={password}
-              setPassword={setPassword}
-              isLoggedIn={isLoggedIn}
-              setIsLoggedIn={setIsLoggedIn}
-              token={token}
-              setToken={setToken}
-            />
-          </Route>
-
-          <Route path="/register">
-            <Register
-              username={username}
-              setUsername={setUsername}
-              password={password}
-              setPassword={setPassword}
-              isLoggedIn={isLoggedIn}
-              setIsLoggedIn={setIsLoggedIn}
-              token={token}
-              setToken={setToken}
-            />
-          </Route>
-        </Switch>
+          <Route path="/activities" element={<Activities />}/>
+           
+          <Route path="/myRoutines" element={<MyRoutines />}/>
+            
+          <Route path="/login"element={<Login />}/>
+            
+          <Route path="/register"element={<Register />}/>
+        </Routes>
       </div>
     </div>
   );
