@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App"
 import {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
+import AuthProvider from './components/AuthProvider'
 
 
 // 👇️ IMPORTANT: use correct ID of your root element
@@ -16,7 +17,9 @@ const root = createRoot(rootElement);
 
 root.render(
   <Router>
-    <App />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </Router>,
 );
 

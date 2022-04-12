@@ -13,6 +13,7 @@ import {
 // need to change Posts, NewPost, Profile, add Activity
 
 function App() {
+  const { user } = useAuth()
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
