@@ -25,12 +25,12 @@ function App() {
   const [userRoutines, setUserRoutines] = useState([]);
   // userRoutines
 
-  useEffect(() => {
-    const localStorageToken = localStorage.getItem("token");
-    if (localStorageToken) {
-      setToken(localStorageToken);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const localStorageToken = localStorage.getItem("token");
+  //   if (localStorageToken) {
+  //     setToken(localStorageToken);
+  //   }
+  // }, []);
 
   return (
     <div className="app">

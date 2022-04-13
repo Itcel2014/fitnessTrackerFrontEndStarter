@@ -1,12 +1,10 @@
 import React, { useState } from "react";
+import useAuth from "../hooks/useAuth";
 import { fetchUserToken } from "../api/users";
 
-
-const Login = ({
-  isLoggedIn,
-  setIsLoggedIn,
-  setToken,
-}) => {
+const Login = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { setToken } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   return (
@@ -20,7 +18,10 @@ const Login = ({
             e.preventDefault();
             try {
               const response = await fetchUserToken(username, password);
-              setToken(response);
+              localStorage.setItem("token", response.token);
+              console.log("response", response, localStorage);
+              setToken(response.token);
+              console.log("response!!", response.token);
               setIsLoggedIn(true);
             } catch (error) {
               console.error(
@@ -50,7 +51,7 @@ const Login = ({
           <button type="submit">Log in</button>
         </form>
       </div>
-       {/* the below section only displays after a successful user login */}
+      {/* the below section only displays after a successful user login */}
       <div
         className="login-confirmation"
         style={{

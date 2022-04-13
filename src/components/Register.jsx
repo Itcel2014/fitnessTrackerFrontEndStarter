@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import useAuth from "../hooks/useAuth";
 import { registerUser } from "../api/users";
 
-const Register = ({
-  isLoggedIn,
-  setIsLoggedIn,
-}) => {
-  const {setToken} = useAuth();
+const Register = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { setToken } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   return (
@@ -20,10 +18,9 @@ const Register = ({
             e.preventDefault();
             try {
               const response = await registerUser(username, password);
-              console.log('response', response)
-              localStorage.setItem('token', response.token);
+              localStorage.setItem("token", response.token);
               setToken(response.token);
-              // setIsLoggedIn(true);
+              setIsLoggedIn(true);
             } catch (error) {
               console.error(
                 "There was a problem with your registration.",
