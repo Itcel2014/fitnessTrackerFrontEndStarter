@@ -20,7 +20,7 @@ const Login = () => {
               localStorage.setItem("token", response.token);
               console.log("response", response, localStorage);
               setToken(response.token);
-              console.log("response!!", response.token);
+
               setIsLoggedIn(true);
             } catch (error) {
               console.error(

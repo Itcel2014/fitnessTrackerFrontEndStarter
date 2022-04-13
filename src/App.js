@@ -10,16 +10,16 @@ import {
   Login,
   Register,
 } from "./components";
-import useAuth  from "./hooks/useAuth"
+import useAuth from "./hooks/useAuth";
 // need to change Posts, NewPost, Profile, add Activity
 
 function App() {
-  const { user } = useAuth()
-  console.log(user, 'user')
+  const { user } = useAuth();
+  console.log(user, "user");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
+
   const [activities, setActivities] = useState([]);
   const [token, setToken] = useState("");
   const [userRoutines, setUserRoutines] = useState([]);
@@ -45,29 +45,22 @@ function App() {
         ) : null}
       </header>
       {/* The below section links to the Navbar component */}
-      <Navbar
-        setIsLoggedIn={setIsLoggedIn}
-        setUsername={setUsername}
-        setPassword={setPassword}
-        setToken={setToken}
-        isLoggedIn={isLoggedIn}
-      />
+      <Navbar isLoggedIn={setIsLoggedIn} />
       <br />
       <div className="container">
         {/* The below section displays the different routes available for display*/}
         <Routes>
-          {/* <Route exact path="/" element={<Routines /> } /> */}
-         
-          <Route path="/routines" element= {<Routines />}/>
-           
+          <Route exact path="/" element={<Routines />} />
 
-          <Route path="/activities" element={<Activities />}/>
-           
-          <Route path="/myRoutines" element={<MyRoutines />}/>
-            
-          <Route path="/login"element={<Login />}/>
-            
-          <Route path="/register"element={<Register />}/>
+          <Route path="/routines" element={<Routines />} />
+
+          <Route path="/activities" element={<Activities />} />
+
+          <Route path="/myRoutines" element={<MyRoutines />} />
+
+          <Route path="/login" element={<Login />} />
+
+          <Route path="/register" element={<Register />} />
         </Routes>
       </div>
     </div>

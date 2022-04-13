@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
-const Navbar = ({
-  setIsLoggedIn,
-  setUsername,
-  setPassword,
-  setToken,
-  isLoggedIn,
-}) => {
+const Navbar = () => {
+  const { setToken } = useAuth();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
   const logoutButton = (
     <li>
       <Link
@@ -45,11 +45,13 @@ const Navbar = ({
         <li>
           <Link to="/MyRoutines">My Routines</Link>
         </li>
-
         {!isLoggedIn ? logInRegisterButtons : null}
         {isLoggedIn ? logoutButton : null}
+        
       </ul>
+      
     </nav>
+    
   );
 };
 

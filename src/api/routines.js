@@ -4,7 +4,8 @@ export async function fetchRoutines() {
   try {
     const response = await fetch(`${API_URL}routines`);
     const data = await response.json();
-    return data.data.routines;
+
+    return data;
   } catch (err) {
     throw err;
   }
