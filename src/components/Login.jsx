@@ -13,7 +13,6 @@ const Login = () => {
       {/* The form below is the form that verifies login credentials */}
       <div className="form-container">
         <form
-          action=""
           onSubmit={async (e) => {
             e.preventDefault();
             try {

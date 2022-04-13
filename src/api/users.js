@@ -43,7 +43,8 @@ export async function fetchUserToken(username, password) {
       }),
     });
     const data = await response.json();
-    return data.token;
+
+    return data;
   } catch (err) {
     throw err;
   }
