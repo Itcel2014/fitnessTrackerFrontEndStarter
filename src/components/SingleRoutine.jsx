@@ -1,11 +1,17 @@
 import React, { useState } from "react";
+import useAuth from "../hooks/useAuth";
 import deleteTrash from "./images/deleteTrash.png";
 import editPencil from "./images/editPencil.png";
 import { deleteRoutine } from "../api/routines";
 import EditRoutine from "./EditRoutine";
 
-const SingleRoutine = ({ routine, token, isLoggedIn, username, routines, setRoutines }) => {
-
+const SingleRoutine = () => {
+  const [key] = useState([]);
+  const [isLoggedIn] = useState("");
+  const { token } = useAuth();
+  const [username] = useState("");
+  const [routines, setRoutines] = useState([]);
+  const [routine] = useState([]);
   const [clickedEdit, setClickedEdit] = useState(false);
   const routineCard = (
     <>
@@ -14,7 +20,6 @@ const SingleRoutine = ({ routine, token, isLoggedIn, username, routines, setRout
       <h4 className="routine-creatorName">Posted by: {routine.creatorName}</h4>
       <br />
       <h5 className="routine-goal">Goal: {routine.goal}</h5>
-      
 
       <br />
       <h5 className="routine-activities">Activities: {routine.activities}</h5>
@@ -39,37 +44,37 @@ const SingleRoutine = ({ routine, token, isLoggedIn, username, routines, setRout
 
   const routineButtons = (
     // these are the buttons that also contain the edit routine form and component link
-    <> 
-        {/* If user is logged in and is the routine author, display Edit and Delete */}
-        {isLoggedIn && routine.creatorName === username ? (
-          <>
-            {/* the Edit button functions are in the file EditRoutine.jsx */}
-            <button
-              className="routine-button"
-              id="edit"
-              onClick={(e) => {
-                e.preventDefault();
-                setClickedEdit(!clickedEdit);
-              }}
-            >
-              {<img src={editPencil} alt="pencil icon" />} Edit
-            </button>
-            <button
-              className="routine-button"
-              id="delete"
-              onClick={(e) => {
-                e.preventDefault();
-                deleteRoutine(routine._id, token);
-                const filteredRoutines = routines.filter((routineObj) => {
-                  return routineObj._id !== routine._id;
-                });
-                setRoutines(filteredRoutines);
-              }}
-            >
-              {<img src={deleteTrash} alt="trash icon" />}Delete
-            </button>
-          </>
-        ) : null}
+    <>
+      {/* If user is logged in and is the routine author, display Edit and Delete */}
+      {isLoggedIn && routine.creatorName === username ? (
+        <>
+          {/* the Edit button functions are in the file EditRoutine.jsx */}
+          <button
+            className="routine-button"
+            id="edit"
+            onClick={(e) => {
+              e.preventDefault();
+              setClickedEdit(!clickedEdit);
+            }}
+          >
+            {<img src={editPencil} alt="pencil icon" />} Edit
+          </button>
+          <button
+            className="routine-button"
+            id="delete"
+            onClick={(e) => {
+              e.preventDefault();
+              deleteRoutine(routine._id, token);
+              const filteredRoutines = routines.filter((routineObj) => {
+                return routineObj._id !== routine._id;
+              });
+              setRoutines(filteredRoutines);
+            }}
+          >
+            {<img src={deleteTrash} alt="trash icon" />}Delete
+          </button>
+        </>
+      ) : null}
       {/*</div>
        This is form for editing a routine and will only display if user is logged in and clicks the edit button*/}
       <div className="editroutine-form">

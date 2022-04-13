@@ -3,8 +3,7 @@ import useAuth from "../hooks/useAuth";
 import { fetchUserToken } from "../api/users";
 
 const Login = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const { setToken } = useAuth();
+  const { setToken, isLoggedIn, setIsLoggedIn } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   return (
@@ -21,7 +20,8 @@ const Login = () => {
               console.log("response", response, localStorage);
               setToken(response.token);
 
-              setIsLoggedIn(true);
+              // setIsLoggedIn(true);
+              console.log(useAuth);
             } catch (error) {
               console.error(
                 "There was a problem with your login information.",

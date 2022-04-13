@@ -3,17 +3,16 @@ import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
-  const { setToken } = useAuth();
+  const { setToken, isLoggedIn, setIsLoggedIn } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
+
   const logoutButton = (
     <li>
       <Link
         to="/"
         onClick={() => {
-          setIsLoggedIn(false);
+          setIsLoggedIn(true);
           setUsername("");
           setPassword("");
           setToken("");
@@ -45,13 +44,9 @@ const Navbar = () => {
         <li>
           <Link to="/MyRoutines">My Routines</Link>
         </li>
-        {!isLoggedIn ? logInRegisterButtons : null}
-        {isLoggedIn ? logoutButton : null}
-        
+        {!isLoggedIn ? logInRegisterButtons : logoutButton}
       </ul>
-      
     </nav>
-    
   );
 };
 
