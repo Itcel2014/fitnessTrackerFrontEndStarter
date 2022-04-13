@@ -4,6 +4,7 @@ import editPencil from "./images/editPencil.png";
 import { deleteRoutine } from "../api/routines";
 import { fetchUserData } from "../api/users";
 import EditRoutine from "./EditRoutine";
+import useAuth from "../hooks/useAuth";
 
 const MyRoutines = ({
   userRoutines,
@@ -15,6 +16,7 @@ const MyRoutines = ({
   userActivities,
   setUserActivites,
 }) => {
+  const { user } = useAuth();
   const [routineDeleted, setRoutineDeleted] = useState(false);
   const [clickedEdit, setClickedEdit] = useState(false);
 

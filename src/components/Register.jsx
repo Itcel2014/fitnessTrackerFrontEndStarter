@@ -1,16 +1,14 @@
-import React from "react";
-
+import React, { useState } from "react";
+import useAuth from "../hooks/useAuth";
 import { registerUser } from "../api/users";
 
 const Register = ({
-  username,
-  setUsername,
-  password,
-  setPassword,
-  setToken,
   isLoggedIn,
   setIsLoggedIn,
 }) => {
+  const {setToken} = useAuth();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <div className="register-page">
       <h2>Welcome to Fitness Tracker!</h2>
@@ -18,13 +16,14 @@ const Register = ({
       <div className="form-container">
         {/* The form below is the form that creates a new username and password */}
         <form
-          action=""
           onSubmit={async (e) => {
             e.preventDefault();
             try {
               const response = await registerUser(username, password);
-              setToken(response);
-              setIsLoggedIn(true);
+              console.log('response', response)
+              localStorage.setItem('token', response.token);
+              setToken(response.token);
+              // setIsLoggedIn(true);
             } catch (error) {
               console.error(
                 "There was a problem with your registration.",

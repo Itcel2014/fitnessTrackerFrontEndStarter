@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { fetchUserToken } from "../api/users";
 
+
 const Login = ({
-  username,
-  setUsername,
-  password,
-  setPassword,
   isLoggedIn,
   setIsLoggedIn,
   setToken,
 }) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <div className="login-page">
       <h2>Welcome Back</h2>

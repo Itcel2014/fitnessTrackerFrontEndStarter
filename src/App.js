@@ -10,14 +10,16 @@ import {
   Login,
   Register,
 } from "./components";
+import useAuth  from "./hooks/useAuth"
 // need to change Posts, NewPost, Profile, add Activity
 
 function App() {
   const { user } = useAuth()
+  console.log(user, 'user')
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [routines, setRoutines] = useState([]);
+  
   const [activities, setActivities] = useState([]);
   const [token, setToken] = useState("");
   const [userRoutines, setUserRoutines] = useState([]);
@@ -54,7 +56,7 @@ function App() {
       <div className="container">
         {/* The below section displays the different routes available for display*/}
         <Routes>
-          <Route exact path="/" element={<Routines /> } />
+          {/* <Route exact path="/" element={<Routines /> } /> */}
          
           <Route path="/routines" element= {<Routines />}/>
            

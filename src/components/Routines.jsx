@@ -1,10 +1,11 @@
-import React, {  useEffect } from "react";
+import React, {  useEffect, useState } from "react";
 import { fetchRoutines } from "../api/routines";
 import { SingleRoutine } from "./";
 import Search from "./Search";
 
 // The routines section displays all routines from the API
-const Routines = ({ routines, setRoutines, isLoggedIn, token, username }) => {
+const Routines = ({ isLoggedIn, token, username }) => {
+  const [routines, setRoutines] = useState([]);
   useEffect(() => {
     const getRoutines = async () => {
       const routinesArray = await fetchRoutines();
