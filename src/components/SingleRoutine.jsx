@@ -11,7 +11,6 @@ const SingleRoutine = ({ routine, i }) => {
   const [routines, setRoutines] = useState([]);
   const [clickedEdit, setClickedEdit] = useState(false);
 
-  console.log("lalalalalal:", user);
   const routineCard = (
     <>
       {/* this routineCard is the main framework for the individual routines */}

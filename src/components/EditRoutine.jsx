@@ -26,16 +26,17 @@ const EditRoutine = ({ routine, routines, setRoutines, setClickedEdit }) => {
               Goal: editGoal !== "" ? editGoal : routine.goal,
               creatorName:
                 editCreatorName !== "" ? editCreatorName : routine.creatorName,
-              IsPublic: editIsPublic !== "" ? editIsPublic : routine.isPublic,
+              // IsPublic: editIsPublic !== "" ? editIsPublic : routine.isPublic,
             };
-            const response = await editRoutine(
-              editRoutineObj,
-              routine._id,
-              token
-            );
-            const editedRoutine = response.data.routine;
+
+            const response = await editRoutine(editRoutineObj, routine, token);
+            // console.log("here", editRoutineObj);
+            // console.log("hii", routine);
+            // console.log("hay", routine.id);
+
+            const editedRoutine = response.data;
             const filteredRoutines = routines.filter((routineObj) => {
-              return routineObj._id !== editedRoutine._id;
+              return routineObj.id !== editedRoutine.id;
             });
             const newArr = [editedRoutine, ...filteredRoutines];
             setRoutines(newArr);

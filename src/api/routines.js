@@ -40,8 +40,8 @@ export async function deleteRoutine(routineId, token) {
   return data;
 }
 
-export async function editRoutine(editRoutineObj, routineId, token) {
-  const response = await fetch(`${API_URL}routines/${routineId}`, {
+export async function editRoutine(editRoutineObj, routine, token) {
+  const response = await fetch(`${API_URL}routines/${routine.id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -50,10 +50,11 @@ export async function editRoutine(editRoutineObj, routineId, token) {
     body: JSON.stringify({
       name: editRoutineObj.name,
       goal: editRoutineObj.goal,
-      isPublic: editRoutineObj.isPublic,
+      // isPublic: editRoutineObj.isPublic,
     }),
   });
   const data = await response.json();
-  console.log(data);
+  console.log("data", data);
+
   return data;
 }
