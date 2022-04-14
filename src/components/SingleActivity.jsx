@@ -11,28 +11,12 @@ const SingleActivity = ({ activity, token, isLoggedIn, username, activities, set
     <>
       {/* this activityCard is the main framework for the individual activities */}
       <h3 className="activity-name">{activity.name}</h3>
-      <h4 className="activity-creatorName">Posted by: {activity.creatorName}</h4>
-      <br />
+     
       <h5 className="activity-goal">Description: {activity.description}</h5>
-      
-
-      <br />
-      <h5 className="activity-activities">Activities: {activity.activities}</h5>
       <br />
       <p className="activity-duration">Duration:{activity.duration}</p>
       <br />
       <p className="activity-count">Count:{activity.count}</p>
-      <br />
-      <span className="activity-time">
-        <p className="activity-created">
-          Created On: {new Date(activity.createdAt).toLocaleString()}
-        </p>
-        {activity.updatedAt !== activity.createdAt ? (
-          <p className="activity-updated">
-            Last Updated On: {new Date(activity.updatedAt).toLocaleString()}
-          </p>
-        ) : null}
-      </span>
       <br />
     </>
   );

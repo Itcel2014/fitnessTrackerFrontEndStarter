@@ -24,7 +24,6 @@ const Routines = () => {
       <Search routines={routines} setRoutines={setRoutines} />
 
       {routines.map((routine, i) => {
-        console.log("LOOK AT ME", routines);
         // the below section displays the individual routines
         return <SingleRoutine key={i} routine={routine} />;
       })}

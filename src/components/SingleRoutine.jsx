@@ -4,8 +4,9 @@ import deleteTrash from "./images/deleteTrash.png";
 import editPencil from "./images/editPencil.png";
 import { deleteRoutine } from "../api/routines";
 import EditRoutine from "./EditRoutine";
+import { SingleActivity } from ".";
 
-const SingleRoutine = ({routine}) => {
+const SingleRoutine = ({routine, i}) => {
   const [isLoggedIn] = useState("");
   const { token } = useAuth();
   const [routines, setRoutines] = useState([]);
@@ -22,25 +23,12 @@ const SingleRoutine = ({routine}) => {
 
       <br />
       {/** map through activites and render each actitiy */}
-      <h5 className="routine-activities">Activities: {routine.activities.length} activites</h5>
-      <br />
-      <p className="routine-duration">Duration:{routine.duration}</p>
-      <br />
-      <p className="routine-count">Count:{routine.count}</p>
-      <br />
-      <span className="routine-time">
-        <p className="routine-created">
-          Created On: {new Date(routine.createdAt).toLocaleString()}
-        </p>
-        {routine.updatedAt !== routine.createdAt ? (
-          <p className="routine-updated">
-            Last Updated On: {new Date(routine.updatedAt).toLocaleString()}
-          </p>
-        ) : null}
-      </span>
-      <br />
+      <h5 className="routine-activities">Activities: {routine.activities.map((activity, i) => {
+        return <SingleActivity key={i} activity={activity} />;
+      })}</h5> 
     </>
   );
+        
 
   // const routineButtons = (
   //   // these are the buttons that also contain the edit routine form and component link
