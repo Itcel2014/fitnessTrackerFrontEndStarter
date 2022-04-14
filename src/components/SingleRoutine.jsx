@@ -6,13 +6,12 @@ import { deleteRoutine } from "../api/routines";
 import EditRoutine from "./EditRoutine";
 import { SingleActivity } from ".";
 
-const SingleRoutine = ({routine, i}) => {
-  const [isLoggedIn] = useState("");
-  const { token } = useAuth();
+const SingleRoutine = ({ routine, i }) => {
+  const { token, user, isLoggedIn } = useAuth();
   const [routines, setRoutines] = useState([]);
   const [clickedEdit, setClickedEdit] = useState(false);
 
-  console.log("routine:", routine)
+  console.log("lalalalalal:", user);
   const routineCard = (
     <>
       {/* this routineCard is the main framework for the individual routines */}
@@ -23,65 +22,66 @@ const SingleRoutine = ({routine, i}) => {
 
       <br />
       {/** map through activites and render each actitiy */}
-      <h5 className="routine-activities">Activities: {routine.activities.map((activity, i) => {
-        return <SingleActivity key={i} activity={activity} />;
-      })}</h5> 
+      <h5 className="routine-activities">
+        Activities:{" "}
+        {routine.activities.map((activity, i) => {
+          return <SingleActivity key={i} activity={activity} />;
+        })}
+      </h5>
     </>
   );
-        
 
-  // const routineButtons = (
-  //   // these are the buttons that also contain the edit routine form and component link
-  //   <>
-  //     {/* If user is logged in and is the routine author, display Edit and Delete */}
-  //     {isLoggedIn && routine.creatorName === username ? (
-  //       <>
-  //         {/* the Edit button functions are in the file EditRoutine.jsx */}
-  //         <button
-  //           className="routine-button"
-  //           id="edit"
-  //           onClick={(e) => {
-  //             e.preventDefault();
-  //             setClickedEdit(!clickedEdit);
-  //           }}
-  //         >
-  //           {<img src={editPencil} alt="pencil icon" />} Edit
-  //         </button>
-  //         <button
-  //           className="routine-button"
-  //           id="delete"
-  //           onClick={(e) => {
-  //             e.preventDefault();
-  //             deleteRoutine(routine._id, token);
-  //             const filteredRoutines = routines.filter((routineObj) => {
-  //               return routineObj._id !== routine._id;
-  //             });
-  //             setRoutines(filteredRoutines);
-  //           }}
-  //         >
-  //           {<img src={deleteTrash} alt="trash icon" />}Delete
-  //         </button>
-  //       </>
-  //     ) : null}
-  //     {/*</div>
-  //      This is form for editing a routine and will only display if user is logged in and clicks the edit button*/}
-  //     <div className="editroutine-form">
-  //       {clickedEdit ? (
-  //         <EditRoutine
-  //           setClickedEdit={setClickedEdit}
-  //           routines={routines}
-  //           setRoutines={setRoutines}
-  //           token={token}
-  //           routine={routine}
-  //         />
-  //       ) : null}
-  //     </div>
-  //   </>
-  // );
+  const routineButtons = (
+    // these are the buttons that also contain the edit routine form and component link
+    <>
+      {/* If user is logged in and is the routine author, display Edit and Delete */}
+      {isLoggedIn && routine.creatorName === user.username ? (
+        <>
+          {/* the Edit button functions are in the file EditRoutine.jsx */}
+          <button
+            className="routine-button"
+            id="edit"
+            onClick={(e) => {
+              e.preventDefault();
+              setClickedEdit(!clickedEdit);
+            }}
+          >
+            {<img src={editPencil} alt="pencil icon" />} Edit
+          </button>
+          <button
+            className="routine-button"
+            id="delete"
+            onClick={(e) => {
+              e.preventDefault();
+              deleteRoutine(routine._id, token);
+              const filteredRoutines = routines.filter((routineObj) => {
+                return routineObj._id !== routine._id;
+              });
+              setRoutines(filteredRoutines);
+            }}
+          >
+            {<img src={deleteTrash} alt="trash icon" />}Delete
+          </button>
+        </>
+      ) : null}
+      {/*</div>
+       This is form for editing a routine and will only display if user is logged in and clicks the edit button*/}
+      <div className="editroutine-form">
+        {clickedEdit ? (
+          <EditRoutine
+            setClickedEdit={setClickedEdit}
+            routines={routines}
+            setRoutines={setRoutines}
+            routine={routine}
+          />
+        ) : null}
+      </div>
+    </>
+  );
   return (
     <div className="routine-card">
       {routineCard}
-      {/* {routineButtons}  */}
+      {routineButtons}
     </div>
   );
 };

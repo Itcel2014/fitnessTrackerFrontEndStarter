@@ -6,7 +6,6 @@ import { deleteActivity } from "../api/activities";
 import EditActivity from "./EditActivity";
 
 const SingleActivity = ({ activity }) => {
-  console.log("HEY!", activity);
   const [isLoggedIn] = useState("");
   const { token } = useAuth();
   const [username] = useState("");

@@ -1,14 +1,10 @@
 import { useState } from "react";
+import useAuth from "../hooks/useAuth";
 import { editRoutine } from "../api/routines";
 import React from "react";
 
-const EditRoutine = ({
-  token,
-  routine,
-  routines,
-  setRoutines,
-  setClickedEdit,
-}) => {
+const EditRoutine = ({ routine, routines, setRoutines, setClickedEdit }) => {
+  const { token } = useAuth();
   const [editName, setEditName] = useState("");
   const [editGoal, setEditGoal] = useState("");
   const [editIsPublic, setIsPublic] = useState(true);
@@ -30,8 +26,7 @@ const EditRoutine = ({
               Goal: editGoal !== "" ? editGoal : routine.goal,
               creatorName:
                 editCreatorName !== "" ? editCreatorName : routine.creatorName,
-              IsPublic:
-                editIsPublic !== "" ? editIsPublic : routine.isPublic,
+              IsPublic: editIsPublic !== "" ? editIsPublic : routine.isPublic,
             };
             const response = await editRoutine(
               editRoutineObj,
