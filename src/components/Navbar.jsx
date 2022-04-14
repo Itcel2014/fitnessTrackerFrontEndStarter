@@ -4,18 +4,16 @@ import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
   const { setToken, isLoggedIn, setIsLoggedIn } = useAuth();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+
 
   const logoutButton = (
     <li>
       <Link
         to="/"
         onClick={() => {
-          setIsLoggedIn(true);
-          setUsername("");
-          setPassword("");
+          setIsLoggedIn(false);
           setToken("");
+          localStorage.removeItem('token');
         }}
       >
         Logout
