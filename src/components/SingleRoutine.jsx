@@ -8,6 +8,7 @@ import { SingleActivity } from ".";
 
 const SingleRoutine = ({ routine, i }) => {
   const { token, user, isLoggedIn } = useAuth();
+  console.log("token1", token);
   const [routines, setRoutines] = useState([]);
   const [clickedEdit, setClickedEdit] = useState(false);
 

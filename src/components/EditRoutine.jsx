@@ -3,13 +3,14 @@ import useAuth from "../hooks/useAuth";
 import { editRoutine } from "../api/routines";
 import React from "react";
 
-const EditRoutine = ({ routine, routines, setRoutines, setClickedEdit }) => {
+const EditRoutine = ({ routine, setClickedEdit }) => {
   const { token } = useAuth();
   const [editName, setEditName] = useState("");
   const [editGoal, setEditGoal] = useState("");
   const [editIsPublic, setIsPublic] = useState(true);
   const [editCreatorName, setEditCreatorName] = useState("");
   const [editActivities, setEditActivities] = useState("");
+  const [routines, setRoutines] = useState([]);
 
   // the below return statement is the drop-down fillable form for editing routines
   // each item is wrapped inside of ternarys to allow for optional editing
@@ -26,13 +27,13 @@ const EditRoutine = ({ routine, routines, setRoutines, setClickedEdit }) => {
               Goal: editGoal !== "" ? editGoal : routine.goal,
               creatorName:
                 editCreatorName !== "" ? editCreatorName : routine.creatorName,
-              // IsPublic: editIsPublic !== "" ? editIsPublic : routine.isPublic,
+              IsPublic:
+                editIsPublic === routine.isPublic
+                  ? routine.isPublic
+                  : editIsPublic,
             };
-
+            // console.log("tokennnnnn:", token);
             const response = await editRoutine(editRoutineObj, routine, token);
-            // console.log("here", editRoutineObj);
-            // console.log("hii", routine);
-            // console.log("hay", routine.id);
 
             const editedRoutine = response.data;
             const filteredRoutines = routines.filter((routineObj) => {
@@ -73,7 +74,15 @@ const EditRoutine = ({ routine, routines, setRoutines, setClickedEdit }) => {
             setEditActivities(e.target.value);
           }}
         />
-
+        <br />
+        <label>Private ? </label>
+        {/* look for Edit Ispublic and checkboxes from stranger's things */}
+        <input
+          type="checkbox"
+          onChange={(e) => {
+            setIsPublic(false);
+          }}
+        />
         <button type="submit">Edit Routine</button>
       </form>
     </>
