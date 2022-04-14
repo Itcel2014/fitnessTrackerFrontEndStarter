@@ -8,13 +8,11 @@ const SearchActivities = ({ activities, setActivities }) => {
   const [clickedSearch, setClickedSearch] = useState(false);
   const [clickedClear, setClickedClear] = useState(false);
 
-  function activityMatches(activity, routine, searchTerm) {
+  function activityMatches(activity, searchTerm) {
     //update according to the API
     if (
       activity.name.includes(searchTerm) ||
-      activity.description.includes(searchTerm) ||
-      routine.creatorName.includes(searchTerm) ||
-      routine.activities.includes(searchTerm)
+      activity.description.includes(searchTerm)
     ) {
       return true;
     }

@@ -6,7 +6,7 @@ import Search from "./Search";
 
 // The routines section displays all routines from the API
 const Routines = () => {
-  const [isLoggedIn] = useState("");
+  const [isLoggedIn] = useState(false);
   const { token } = useAuth();
   const [username] = useState("");
   const [routines, setRoutines] = useState([]);

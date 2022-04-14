@@ -4,7 +4,7 @@ export async function fetchActivities() {
   try {
     const response = await fetch(`${API_URL}activities`);
     const data = await response.json();
-    return data.data.activities;
+    return data;
   } catch (err) {
     throw err;
   }
@@ -55,4 +55,3 @@ export async function editActivity(editActivityObj, activityId, token) {
   console.log(data);
   return data;
 }
-

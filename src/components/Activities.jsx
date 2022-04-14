@@ -26,17 +26,7 @@ const Activities = () => {
 
       {activities.map((activity, i) => {
         // the below section displays the individual activities
-        return (
-          <SingleActivity
-            key={i}
-            activity={activity}
-            token={token}
-            isLoggedIn={isLoggedIn}
-            username={username}
-            activities={activities}
-            setActivities={setActivities}
-          />
-        );
+        return <SingleActivity key={i} activity={activity} />;
       })}
     </div>
   );
