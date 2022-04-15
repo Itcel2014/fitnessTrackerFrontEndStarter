@@ -17,11 +17,9 @@ const Login = () => {
             try {
               const response = await fetchUserToken(username, password);
               localStorage.setItem("token", response.token);
-              console.log("response", response, localStorage);
+              console.log("response from Login", response, localStorage);
               setToken(response.token);
-
-              // setIsLoggedIn(true);
-              console.log(useAuth);
+              setIsLoggedIn(true);
             } catch (error) {
               console.error(
                 "There was a problem with your login information.",

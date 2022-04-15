@@ -335,7 +335,7 @@
   }
 
 
-  /* NEW POST SPECIFIC */
+  /* NEW SPECIFIC */
   .newroutine-page {
     width: 38%;
     margin: 0.5rem 0;
@@ -345,7 +345,25 @@
     color: #03258c;
   }
   
+  .newactivity-page {
+    width: 38%;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background-color: #7789bf;
+    height: fit-content;
+    color: #03258c;
+  }
+
   .newroutine-form {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    color: #03258c;
+  }
+
+  .newactivity-form {
     margin: 0.5rem;
     padding: 0.5rem;
     background-color: #f2f2f2;
@@ -360,13 +378,28 @@
     border: 2px solid #1f3b73;
     margin-bottom: 1rem;
   }
+
+  .newactivity-form input,
+  .newactivity-form textarea {
+    padding: 0.5rem;
+    border: 2px solid #1f3b73;
+    margin-bottom: 1rem;
+  }
   
   .newroutine-form textarea {
     height: 10rem;
     resize: none;
   }
+  .newactivity-form textarea {
+    height: 10rem;
+    resize: none;
+  }
   
   .newroutine-form button {
+    align-self: flex-end;
+    color: #03258c;
+  }
+  .newactivity-form button {
     align-self: flex-end;
     color: #03258c;
   }

@@ -5,19 +5,19 @@ import useAuth from "../hooks/useAuth";
 // this component is responsible for creating new routine and is displayed on the right-hand side of the *Routine page//
 
 const NewRoutine = () => {
-  const { token, user, isLoggedIn } = useAuth();
-  const [routines, setRoutines] = useState([]);
+  const { token, isLoggedIn, routines, setRoutines } = useAuth();
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
   const [isPublic, setIsPublic] = useState(true);
   const [activities, setActivities] = useState("");
 
+    
   return (
     <div className="newroutine-page">
       {/* The below form is only displayed when the user is logged in */}
       {!isLoggedIn ? (
         <div className="newroutine-form">
-          Please log in/register to create routines or send messages.
+          Please log in/register to create new routines.
         </div>
       ) : (
         <>

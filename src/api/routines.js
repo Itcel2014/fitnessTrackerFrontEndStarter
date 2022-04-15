@@ -14,7 +14,8 @@ export async function fetchRoutines() {
 export async function createRoutine(routineObj, token) {
   const name = routineObj.name
   const goal = routineObj.goal
-  console.log(name, 'name: from CRout')
+  const isPublic = routineObj.isPublic
+  console.log(isPublic, 'isPublic: from CRout')
   const response = await fetch(`${API_URL}routines`, {
     method: "POST",
     headers: {

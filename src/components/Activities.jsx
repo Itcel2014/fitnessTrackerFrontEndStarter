@@ -4,6 +4,7 @@ import { fetchActivities } from "../api/activities";
 import { SingleActivity } from "./";
 // import Search? or add a SearchActivity?
 import SearchActivities from "./SearchActivities";
+import NewActivity from "./NewActivity";
 
 const Activities = () => {
   const [activities, setActivities] = useState([]);
@@ -20,6 +21,7 @@ const Activities = () => {
   }, [setActivities]);
 
   return (
+    <div className="container">
     <div className="routine-page">
       {/* the Search component is displayed here */}
       <SearchActivities activities={activities} setActivities={setActivities} />
@@ -28,6 +30,8 @@ const Activities = () => {
         // the below section displays the individual activities
         return <SingleActivity key={i} activity={activity} />;
       })}
+    </div>
+    <NewActivity />
     </div>
   );
 };

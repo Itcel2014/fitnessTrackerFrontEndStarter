@@ -7,12 +7,13 @@ import EditRoutine from "./EditRoutine";
 import useAuth from "../hooks/useAuth";
 import { NewRoutine } from "./";
 
-const MyRoutines = ({}) => {
+const MyRoutines = () => {
   const [userRoutines, setUserRoutines] = useState([]);
   const { user, token, isLoggedIn } = useAuth();
   const [routineDeleted, setRoutineDeleted] = useState(false);
   const [clickedEdit, setClickedEdit] = useState(false);
   const username = user.username;
+  console.log(token, 'token from MyRoutines')
 
   // The below useEffect is responsible for retrieving and filtering the user's routine and activities
   useEffect(() => {
@@ -37,22 +38,20 @@ const MyRoutines = ({}) => {
     <div className="container">
       {!isLoggedIn ? (
         <div className="routines-page">
-          Please log in/register to create routines or activities.
+          Please log in/register to edit routines or activities.
         </div>
       ) : (
         <div className="routine-page">
           {/* This section is used to display the User's routines */}
           <div className="routine-page">
-            {userRoutines.length === 0 ? (
-              <h2>No Routines Yet</h2>
-            ) : (
+            {userRoutines.length ? (
               userRoutines.map((routine) => {
                 return (
                   <div
                     className="routine-card"
                     key={`${routine.id}myRoutineKeys`}
                   >
-                    {!routine.active ? (
+                    {!routine.isPublic ? (
                       <>
                         <h3
                           className="routine-name"
@@ -91,7 +90,6 @@ const MyRoutines = ({}) => {
 
                     <br />
                     <div className="button-container">
-                      {!routine.active ? null : (
                         <>
                           <button
                             className="routine-button"
@@ -115,7 +113,6 @@ const MyRoutines = ({}) => {
                             {<img src={deleteTrash} alt="trash icon" />}Delete
                           </button>
                         </>
-                      )}
                     </div>
                     {/* the below section opens the EditRoutine form */}
                     <div className="editRoutine-form">
@@ -135,6 +132,8 @@ const MyRoutines = ({}) => {
                   </div>
                 );
               })
+            ) : (
+              <h2>No Routines Yet</h2>  
             )}
           </div>
         </div>
