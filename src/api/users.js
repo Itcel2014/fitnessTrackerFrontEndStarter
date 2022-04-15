@@ -50,11 +50,14 @@ export async function fetchUserToken(username, password) {
   }
 }
 
-export async function fetchUserRoutines(username) {
+export async function fetchUserRoutines(username, token) {
   try {
     const response = await fetch(`${API_URL}users/${username}/routines`, {
       method: "GET",
-      headers: { "Content-Type": "application/json" }
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
     const data = await response.json();
     

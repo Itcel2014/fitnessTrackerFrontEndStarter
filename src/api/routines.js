@@ -12,6 +12,9 @@ export async function fetchRoutines() {
 }
 
 export async function createRoutine(routineObj, token) {
+  const name = routineObj.name
+  const goal = routineObj.goal
+  console.log(name, 'name: from CRout')
   const response = await fetch(`${API_URL}routines`, {
     method: "POST",
     headers: {
@@ -19,12 +22,13 @@ export async function createRoutine(routineObj, token) {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      name: routineObj.name,
-      goal: routineObj.goal,
-      isPublic: routineObj.isPublic,
+      name: name,
+      goal: goal,
+      // isPublic: routineObj.isPublic,
     }),
   });
   const data = await response.json();
+  console.log(data, 'data from CreateRoutine')
   return data;
 }
 
@@ -41,7 +45,6 @@ export async function deleteRoutine(routineId, token) {
 }
 
 export async function editRoutine(editRoutineObj, routine, token) {
-  console.log("token:", token);
   const response = await fetch(`${API_URL}routines/${routine.id}`, {
     method: "PATCH",
     headers: {

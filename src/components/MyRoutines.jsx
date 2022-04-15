@@ -5,7 +5,7 @@ import { deleteRoutine } from "../api/routines";
 import { fetchUserRoutines } from "../api/users";
 import EditRoutine from "./EditRoutine";
 import useAuth from "../hooks/useAuth";
-
+import { NewRoutine } from "./";
 const MyRoutines = ({
 }) => {
   const [userRoutines, setUserRoutines] = useState([]);
@@ -19,7 +19,7 @@ const MyRoutines = ({
     const getUserRoutines = async () => {
       try {
         if (isLoggedIn) {
-          const response = await fetchUserRoutines(username);
+          const response = await fetchUserRoutines(username, token);
           console.log(response, "response");
           setUserRoutines(response);
           // setUserActivities(response.data.activities);
@@ -36,13 +36,13 @@ const MyRoutines = ({
   // The below sections display both the user's routines and the user's activities
   console.log(userRoutines, 'userRoutine')
   return (
-    <>
+    <div className="container">
       {!isLoggedIn ? (
         <div className="routines-page">
           Please log in/register to create routines or activities.
         </div>
       ) : (
-        <div className="myroutines-page">
+        <div className="routine-page">
           {/* This section is used to display the User's routines */}
           <div className="routine-page">
             {userRoutines.length === 0 ? (
@@ -160,7 +160,8 @@ const MyRoutines = ({
           </div> */}
         </div>
       )}
-    </>
+      <NewRoutine />
+    </div>
   );
 };
 

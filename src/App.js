@@ -16,14 +16,6 @@ import useAuth from "./hooks/useAuth";
 function App() {
   const { user, isLoggedIn, setIsLoggedIn } = useAuth();
   const [username, setUsername] = useState("");
-  // userRoutines
-
-  // useEffect(() => {
-  //   const localStorageToken = localStorage.getItem("token");
-  //   if (localStorageToken) {
-  //     setToken(localStorageToken);
-  //   }
-  // }, []);
 
   return (
     <div className="app">
@@ -50,6 +42,7 @@ function App() {
           <Route path="/activities" element={<Activities />} />
 
           <Route path="/myRoutines" element={<MyRoutines />} />
+           
 
           <Route path="/login" element={<Login />} />
 

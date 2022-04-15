@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { createRoutine } from "../api/routines";
+import useAuth from "../hooks/useAuth";
+
 
 // this component is responsible for creating new routine and is displayed on the right-hand side of the *Routine page//
 
-const NewRoutine = ({ token, routines, setRoutines, isLoggedIn }) => {
+const NewRoutine = () => {
+  const { token, user, isLoggedIn} = useAuth();
+  const [routines, setRoutines] = useState([]);
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
   const [activities, setActivities] = useState("");
@@ -25,10 +29,9 @@ const NewRoutine = ({ token, routines, setRoutines, isLoggedIn }) => {
                 const routineObj = {
                   name,
                   goal,
-                  activities,
                 };
                 const response = await createRoutine(routineObj, token);
-                let newArr = [...routines, response.data.routine];
+                let newArr = [response, ...routines];
                 setRoutines(newArr);
               } catch (error) {
                 console.error(error);
@@ -52,15 +55,15 @@ const NewRoutine = ({ token, routines, setRoutines, isLoggedIn }) => {
                 setGoal(e.target.value);
               }}
             />
-            <label>Activities</label>
-            <input
+            {/* <label>Activities</label> */}
+            {/* <input
               type="text"
               placeholder="Activities"
               value={activities}
               onChange={(e) => {
                 setActivities(e.target.value);
               }}
-            />
+            /> */}
             <button type="submit">Submit</button>
           </form>
         </>
