@@ -6,13 +6,13 @@ import { fetchUserRoutines } from "../api/users";
 import EditRoutine from "./EditRoutine";
 import useAuth from "../hooks/useAuth";
 import { NewRoutine } from "./";
-const MyRoutines = ({
-}) => {
+
+const MyRoutines = ({}) => {
   const [userRoutines, setUserRoutines] = useState([]);
   const { user, token, isLoggedIn } = useAuth();
   const [routineDeleted, setRoutineDeleted] = useState(false);
   const [clickedEdit, setClickedEdit] = useState(false);
-  const username = user.username
+  const username = user.username;
 
   // The below useEffect is responsible for retrieving and filtering the user's routine and activities
   useEffect(() => {
@@ -22,9 +22,7 @@ const MyRoutines = ({
           const response = await fetchUserRoutines(username, token);
           console.log(response, "response");
           setUserRoutines(response);
-          // setUserActivities(response.data.activities);
-          // setUsername(response.data.username);
-        };
+        }
       } catch (err) {
         console.error("There was an issue retrieving user information", err);
       }
@@ -34,7 +32,7 @@ const MyRoutines = ({
 
   // The Profile page will only display if the user is logged in
   // The below sections display both the user's routines and the user's activities
-  console.log(userRoutines, 'userRoutine')
+  console.log(userRoutines, "userRoutine");
   return (
     <div className="container">
       {!isLoggedIn ? (
@@ -50,7 +48,10 @@ const MyRoutines = ({
             ) : (
               userRoutines.map((routine) => {
                 return (
-                  <div className="routine-card" key={`${routine.id}myRoutineKeys`}>
+                  <div
+                    className="routine-card"
+                    key={`${routine.id}myRoutineKeys`}
+                  >
                     {!routine.active ? (
                       <>
                         <h3
@@ -73,20 +74,21 @@ const MyRoutines = ({
 
                     <br />
                     <h5 className="routine-activities">
-                      Activities: {
-                        routine.activities && routine.activities.length ? routine.activities.map((activity, i)=>{
-                         return <div key={`myActivitiesKey${i}`}>
-                           <p>
-                             {activity.name}
-                           </p>
-                         </div>
-                        }) : null
-                      }
+                      Activities:{" "}
+                      {routine.activities && routine.activities.length
+                        ? routine.activities.map((activity, i) => {
+                            return (
+                              <div key={`myActivitiesKey${i}`}>
+                                <p>{activity.name}</p>
+                              </div>
+                            );
+                          })
+                        : null}
                     </h5>
                     <br />
                     <p className="routine-goal">{routine.goal}</p>
                     <br />
-                   
+
                     <br />
                     <div className="button-container">
                       {!routine.active ? null : (
@@ -135,29 +137,6 @@ const MyRoutines = ({
               })
             )}
           </div>
-
-          {/* This section is used to display activities created by the user */}
-          {/* <div className="message-page">
-            {userMess.length === 0 ? (
-              <h2>No Messages Yet</h2>
-            ) : (
-              userMessages.map((message, i) => {
-                return (
-                  <div className="message-card" key={i}>
-                    <h3>Post: {message.post.title}</h3>
-                    <h4>From: {message.fromUser.username}</h4>
-                    <br />
-                    <p>{message.content}</p>
-                    <br /> */}
-                    {/* This section is to open the Reply form to messages directed to the user */}
-                    {/* {userMessages[i].fromUser.username === username ? null : (
-                      <Messages token={token} message={message} />
-                    )}
-                  </div>
-                );
-              })
-            )}
-          </div> */}
         </div>
       )}
       <NewRoutine />

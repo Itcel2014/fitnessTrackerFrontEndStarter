@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { createRoutine } from "../api/routines";
 import useAuth from "../hooks/useAuth";
 
-
 // this component is responsible for creating new routine and is displayed on the right-hand side of the *Routine page//
 
 const NewRoutine = () => {
-  const { token, user, isLoggedIn} = useAuth();
+  const { token, user, isLoggedIn } = useAuth();
   const [routines, setRoutines] = useState([]);
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
+  const [isPublic, setIsPublic] = useState(true);
   const [activities, setActivities] = useState("");
 
   return (
@@ -29,6 +29,7 @@ const NewRoutine = () => {
                 const routineObj = {
                   name,
                   goal,
+                  isPublic,
                 };
                 const response = await createRoutine(routineObj, token);
                 let newArr = [response, ...routines];
@@ -55,15 +56,14 @@ const NewRoutine = () => {
                 setGoal(e.target.value);
               }}
             />
-            {/* <label>Activities</label> */}
-            {/* <input
-              type="text"
-              placeholder="Activities"
-              value={activities}
+            <label>Private ? </label>
+            <input
+              type="checkbox"
               onChange={(e) => {
-                setActivities(e.target.value);
+                setIsPublic(false);
               }}
-            /> */}
+            />
+
             <button type="submit">Submit</button>
           </form>
         </>

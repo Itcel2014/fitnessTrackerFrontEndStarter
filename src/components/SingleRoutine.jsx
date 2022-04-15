@@ -52,9 +52,9 @@ const SingleRoutine = ({ routine, i }) => {
             id="delete"
             onClick={(e) => {
               e.preventDefault();
-              deleteRoutine(routine._id, token);
+              deleteRoutine(routine.id, token);
               const filteredRoutines = routines.filter((routineObj) => {
-                return routineObj._id !== routine._id;
+                return routineObj.id !== routine.id;
               });
               setRoutines(filteredRoutines);
             }}

@@ -24,7 +24,7 @@ export async function createRoutine(routineObj, token) {
     body: JSON.stringify({
       name: name,
       goal: goal,
-      // isPublic: routineObj.isPublic,
+      isPublic: routineObj.isPublic,
     }),
   });
   const data = await response.json();
@@ -54,7 +54,7 @@ export async function editRoutine(editRoutineObj, routine, token) {
     body: JSON.stringify({
       name: editRoutineObj.Name,
       goal: editRoutineObj.Goal,
-      // isPublic: editRoutineObj.isPublic,
+      isPublic: editRoutineObj.isPublic,
     }),
   });
 
