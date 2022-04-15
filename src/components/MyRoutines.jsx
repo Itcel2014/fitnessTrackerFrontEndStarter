@@ -2,43 +2,39 @@ import React, { useState, useEffect } from "react";
 import deleteTrash from "./images/deleteTrash.png";
 import editPencil from "./images/editPencil.png";
 import { deleteRoutine } from "../api/routines";
-import { fetchUserData } from "../api/users";
+import { fetchUserRoutines } from "../api/users";
 import EditRoutine from "./EditRoutine";
 import useAuth from "../hooks/useAuth";
 
 const MyRoutines = ({
-  userRoutines,
-  setUserRoutines,
-  isLoggedIn,
-  token,
-  username,
-  setUsername,
-  userActivities,
-  setUserActivites,
 }) => {
-  const { user } = useAuth();
+  const [userRoutines, setUserRoutines] = useState([]);
+  const { user, token, isLoggedIn } = useAuth();
   const [routineDeleted, setRoutineDeleted] = useState(false);
   const [clickedEdit, setClickedEdit] = useState(false);
+  const username = user.username
 
   // The below useEffect is responsible for retrieving and filtering the user's routine and activities
   useEffect(() => {
-    const getUserData = async () => {
+    const getUserRoutines = async () => {
       try {
         if (isLoggedIn) {
-          const response = await fetchUserData(token);
-          setUserRoutines(response.data.routines);
-          setUserActivites(response.data.activities);
-          setUsername(response.data.username);
-        }
+          const response = await fetchUserRoutines(username);
+          console.log(response, "response");
+          setUserRoutines(response);
+          // setUserActivities(response.data.activities);
+          // setUsername(response.data.username);
+        };
       } catch (err) {
         console.error("There was an issue retrieving user information", err);
       }
     };
-    getUserData();
-  }, []);
+    getUserRoutines();
+  }, [setUserRoutines]);
 
   // The Profile page will only display if the user is logged in
   // The below sections display both the user's routines and the user's activities
+  console.log(userRoutines, 'userRoutine')
   return (
     <>
       {!isLoggedIn ? (
@@ -54,7 +50,7 @@ const MyRoutines = ({
             ) : (
               userRoutines.map((routine) => {
                 return (
-                  <div className="routine-card" key={routine._id}>
+                  <div className="routine-card" key={`${routine.id}myRoutineKeys`}>
                     {!routine.active ? (
                       <>
                         <h3
@@ -77,23 +73,20 @@ const MyRoutines = ({
 
                     <br />
                     <h5 className="routine-activities">
-                      Activities: {routine.activities}
+                      Activities: {
+                        routine.activities && routine.activities.length ? routine.activities.map((activity, i)=>{
+                         return <div key={`myActivitiesKey${i}`}>
+                           <p>
+                             {activity.name}
+                           </p>
+                         </div>
+                        }) : null
+                      }
                     </h5>
                     <br />
                     <p className="routine-goal">{routine.goal}</p>
                     <br />
-                    <span className="routine-time">
-                      <p className="routine-created">
-                        Created On:{" "}
-                        {new Date(routine.createdAt).toLocaleString()}
-                      </p>
-                      {routine.updatedAt !== routine.createdAt ? (
-                        <p className="routine-updated">
-                          Last Updated On:{" "}
-                          {new Date(routine.updatedAt).toLocaleString()}
-                        </p>
-                      ) : null}
-                    </span>
+                   
                     <br />
                     <div className="button-container">
                       {!routine.active ? null : (
@@ -114,7 +107,7 @@ const MyRoutines = ({
                             onClick={(e) => {
                               e.preventDefault();
                               setRoutineDeleted(true);
-                              deleteRoutine(routine._id, token);
+                              deleteRoutine(routine.id, token);
                             }}
                           >
                             {<img src={deleteTrash} alt="trash icon" />}Delete

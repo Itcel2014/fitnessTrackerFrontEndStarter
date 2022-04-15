@@ -49,3 +49,17 @@ export async function fetchUserToken(username, password) {
     throw err;
   }
 }
+
+export async function fetchUserRoutines(username) {
+  try {
+    const response = await fetch(`${API_URL}users/${username}/routines`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" }
+    });
+    const data = await response.json();
+    
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}

@@ -14,15 +14,8 @@ import useAuth from "./hooks/useAuth";
 // need to change Posts, NewPost, Profile, add Activity
 
 function App() {
-  const { user } = useAuth();
-  console.log(user, "user");
+  const { user, isLoggedIn, setIsLoggedIn } = useAuth();
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const [activities, setActivities] = useState([]);
-  const [token, setToken] = useState("");
-  const [userRoutines, setUserRoutines] = useState([]);
   // userRoutines
 
   // useEffect(() => {
