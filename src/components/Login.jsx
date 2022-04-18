@@ -17,7 +17,6 @@ const Login = () => {
             try {
               const response = await fetchUserToken(username, password);
               localStorage.setItem("token", response.token);
-              console.log("response from Login", response, localStorage);
               setToken(response.token);
               setIsLoggedIn(true);
             } catch (error) {

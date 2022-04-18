@@ -20,7 +20,6 @@ const Register = () => {
               const response = await registerUser(username, password);
               localStorage.setItem("token", response.token);
               setToken(response.token);
-              console.log("lalalalalala", response.token);
               setIsLoggedIn(true);
             } catch (error) {
               console.error(

@@ -10,8 +10,6 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     async function getUser() {
       if (localStorage.getItem("token")) {
-        // Pretend this is from a fetchUser()
-        console.log("token", localStorage.getItem("token"));
         const newUser = await fetchUserData(localStorage.getItem("token"));
         setUser(newUser);
         setIsLoggedIn(true);

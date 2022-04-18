@@ -52,6 +52,6 @@ export async function editActivity(editActivityObj, activityId, token) {
     }),
   });
   const data = await response.json();
-  console.log(data);
+  
   return data;
 }

@@ -11,8 +11,6 @@ const NewActivity = () => {
   const [count, setCount] = useState("");
   const [duration, setDuration] = useState("");
  
-
-    
   return (
     <div className="newactivity-page">
       {/* The below form is only displayed when the user is logged in */}

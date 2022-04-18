@@ -15,7 +15,6 @@ export async function createRoutine(routineObj, token) {
   const name = routineObj.name
   const goal = routineObj.goal
   const isPublic = routineObj.isPublic
-  console.log(isPublic, 'isPublic: from CRout')
   const response = await fetch(`${API_URL}routines`, {
     method: "POST",
     headers: {
@@ -29,7 +28,6 @@ export async function createRoutine(routineObj, token) {
     }),
   });
   const data = await response.json();
-  console.log(data, 'data from CreateRoutine')
   return data;
 }
 
@@ -60,7 +58,6 @@ export async function editRoutine(editRoutineObj, routine, token) {
   });
 
   const data = await response.json();
-  console.log("data", data);
 
   return data;
 }

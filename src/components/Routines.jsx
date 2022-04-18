@@ -10,7 +10,6 @@ const Routines = () => {
   useEffect(() => {
     const getRoutines = async () => {
       const routinesArray = await fetchRoutines();
-      console.log(routinesArray, "routinesArr");
       setRoutines(routinesArray);
     };
     getRoutines();

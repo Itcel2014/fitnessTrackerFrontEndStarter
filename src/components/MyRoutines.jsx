@@ -13,7 +13,7 @@ const MyRoutines = () => {
   const [routineDeleted, setRoutineDeleted] = useState(false);
   const [clickedEdit, setClickedEdit] = useState(false);
   const username = user.username;
-  console.log(token, 'token from MyRoutines')
+  
 
   // The below useEffect is responsible for retrieving and filtering the user's routine and activities
   useEffect(() => {
@@ -21,7 +21,6 @@ const MyRoutines = () => {
       try {
         if (isLoggedIn) {
           const response = await fetchUserRoutines(username, token);
-          console.log(response, "response");
           setUserRoutines(response);
         }
       } catch (err) {
@@ -33,7 +32,6 @@ const MyRoutines = () => {
 
   // The Profile page will only display if the user is logged in
   // The below sections display both the user's routines and the user's activities
-  console.log(userRoutines, "userRoutine");
   return (
     <div className="container">
       {!isLoggedIn ? (
